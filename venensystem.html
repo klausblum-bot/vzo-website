@@ -67,10 +67,18 @@ section{padding:56px 0}
 h3.block{font-size:22px;margin:34px 0 12px}
 ul.bullets{margin:0 0 1.2em 22px}
 ul.bullets li{margin-bottom:8px}
-.figure-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:22px}
+.figure-grid{display:grid;gap:20px;margin-top:22px}
 .figure{background:var(--card);border:1px solid var(--line);border-radius:0;overflow:hidden}
-.figure img{width:100%;object-fit:cover}
+.figure img{width:100%;height:auto}
 .figure figcaption{padding:10px 16px;font-size:14px;font-weight:600;color:var(--heading);border-top:1px solid var(--line)}
+/* Krampfadern: LegAnatomy flach/quer + vene-gesund hoch in ungleichen Spalten (ca. 50/40 wie Original) */
+.figure-grid.fg-leg{grid-template-columns:1.25fr 1fr;align-items:flex-start}
+/* Krankheitsbilder: kleine, schmale Kacheln (~400px H&ouml;he) wie Original-1/5-Spalten */
+.figure-grid.fg-tiles{grid-template-columns:220px 280px;justify-content:start;align-items:start;gap:28px}
+@media(max-width:760px){
+  .figure-grid.fg-leg{grid-template-columns:1fr}
+  .figure-grid.fg-tiles{grid-template-columns:1fr;justify-content:stretch;max-width:360px;margin-left:auto;margin-right:auto}
+}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
 @media(max-width:760px){.two{grid-template-columns:1fr}}
 .callout{background:var(--card);border-left:4px solid var(--blue);border-radius:10px;padding:18px 22px;margin:0 0 24px}
@@ -151,7 +159,7 @@ footer .bottom{border-top:1px solid #3a3a3a;background:#1f1f1f;padding:18px 0;fo
     </ul>
     <p>… mit ihren jeweiligen Seitenästen.</p>
     <div class="callout"><strong>Die sichtbaren Krampfadern sind die Seitenäste der erkrankten Stammvenen.</strong></div>
-    <div class="figure-grid">
+    <div class="figure-grid fg-leg">
       <figure class="figure"><img src="medien/uploads/2021/03/LegAnatomyIllustration-venensystem-min.jpg.webp" alt="Venensystem"><figcaption>Venensystem</figcaption></figure>
       <figure class="figure"><img src="medien/uploads/2021/03/vene-gesund-krampfader-min.png.webp" alt="Gesunde Vene und Krampfader"><figcaption>Gesunde Vene – Krampfader</figcaption></figure>
     </div>
@@ -172,7 +180,7 @@ footer .bottom{border-top:1px solid #3a3a3a;background:#1f1f1f;padding:18px 0;fo
     <div class="section-head"><h2>Krankheitsbilder</h2></div>
     <p>Mit der Zeit führt der chronische Überdruck zu vermehrtem Austritt von Flüssigkeit, Eiweiss und Blutkörperchen in das umgebende Gewebe. Dies hat Entzündungen, Schwellungen (Ödeme), Verhärtungen (Sklerosen) und bräunliche Verfärbungen (Hyperpigmentationen) der Haut zur Folge – hauptsächlich in der sogenannten Gamaschenzone oberhalb des Sprunggelenks.</p>
     <p>Entzündungen in diesen kranken Venen führen zu oberflächlichen Beinvenenthrombosen (Varikophlebitis), was in seltenen Fällen eine tiefe Beinvenenthrombose und Lungenembolie zur Folge haben kann. Bei lang andauernden Verläufen können Haut- und Fettgewebe so schlecht durchblutet sein, dass es zu einem offenen Bein (ulcus cruris) kommen kann.</p>
-    <div class="figure-grid">
+    <div class="figure-grid fg-tiles">
       <figure class="figure"><img src="medien/uploads/2021/03/Krampfadern-400h-1-min.jpg.webp" alt="Krampfadern"><figcaption>Krampfadern</figcaption></figure>
       <figure class="figure"><img src="medien/uploads/2021/03/Ulcus-2-1-min.jpg.webp" alt="Hyperpigmentierung"><figcaption>Hyperpigmentierung</figcaption></figure>
     </div>
