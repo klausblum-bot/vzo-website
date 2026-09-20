@@ -1,0 +1,26 @@
+name: Deploy zu Staging (neu.v-zo.ch)
+
+# Nur manuell auslösbar (Button im Repo) – es wird NIE automatisch deployed.
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repo-Inhalt abrufen
+        uses: actions/checkout@v4
+
+      - name: SFTP-Client (lftp) installieren
+        run: sudo apt-get update && sudo apt-get install -y lftp >/dev/null
+
+      - name: Dateien nach /public_html/neu/ übertragen
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp -c "set sftp:auto-confirm yes; set net:timeout 60; \
+            open sftp://$FTP_HOST --user '$FTP_USER' --password '$FTP_PASSWORD'; \
+            mirror -R --exclude-glob '.git*' --exclude-glob '.github*' --exclude-glob 'vzo-website.zip' --exclude 'BRAND.md' . /public_html/neu/; \
+            bye"
