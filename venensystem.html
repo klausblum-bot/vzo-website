@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Venensystem | Venenzentrum Zürcher Oberland</title>
+<meta name="description" content="Das Venensystem der Beine verstehen: Krampfadern, Ursachen, Krankheitsbilder, Rezidive, Diagnostik, Lipödem und Lymphödem.">
+<style>
+:root{
+  --blue:#2ea3f2;
+  --blue-strong:#337cd6;
+  --blue-strong-hover:#1959ff;
+  --blue-dark:#337cd6;
+  --heading:#313131;
+  --text:#666666;
+  --bg:#ffffff;
+  --line:#e5eef5;
+  --card:#f5fafd;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans','Source Sans Pro',Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--blue-dark);text-decoration:underline}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,h4{color:var(--heading);font-weight:700;line-height:1.25}
+p{margin:0 0 1.1em}
+
+.topbar{background:var(--blue-dark);color:#fff;font-size:12px;font-weight:600}
+.topbar .container{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding-top:.75em;padding-bottom:.75em}
+.topbar a{color:#fff}
+.topbar a:hover{color:#fff;text-decoration:none;opacity:.7}
+.topbar .sep{opacity:.5}
+header.main{position:sticky;top:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.12)}
+header.main .container{display:flex;align-items:center;justify-content:center;padding-top:12px;padding-bottom:12px}
+nav.main-nav{display:flex;flex-wrap:wrap;gap:4px}
+nav.main-nav a{padding:10px 14px;border-radius:8px;font-weight:600;font-size:15px;color:var(--heading)}
+nav.main-nav a:hover{text-decoration:none;color:var(--blue);background:rgba(46,163,242,.08)}
+nav.main-nav a.active{background:var(--blue-strong);color:#fff}
+/* Logo als eigene, volle Breite Zeile UNTER dem Menue (nicht miniaturisiert) */
+.brand-row{background:var(--bg);border-bottom:1px solid var(--line)}
+.brand-row .container{max-width:1200px;text-align:center;padding-top:22px;padding-bottom:22px;padding-left:0;padding-right:0}
+.brand-row img{display:block;width:100%;height:auto;max-width:1200px;margin:0 auto}
+@media(max-width:760px){
+  header.main .container{padding-top:10px;padding-bottom:10px}
+  nav.main-nav{justify-content:center}
+  nav.main-nav a{padding:9px 12px;font-size:14px}
+  .brand-row .container{padding:16px 20px}
+  .brand-row img{max-width:100%}
+  .topbar .container{justify-content:center;text-align:center}
+}
+
+section{padding:56px 0}
+.page-head{background:linear-gradient(135deg,#eef6fd 0%,#ffffff 60%);padding:48px 0}
+.page-head h1{font-size:38px;margin-bottom:12px}
+.page-head p{max-width:760px;font-size:18px}
+@media(max-width:760px){.page-head h1{font-size:28px}}
+.section-head{max-width:760px;margin-bottom:28px}
+.section-head h2{font-size:30px;margin-bottom:10px}
+h3.block{font-size:22px;margin:34px 0 12px}
+ul.bullets{margin:0 0 1.2em 22px}
+ul.bullets li{margin-bottom:8px}
+.figure-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:22px}
+.figure{background:var(--card);border:1px solid var(--line);border-radius:0;overflow:hidden}
+.figure img{width:100%;object-fit:cover}
+.figure figcaption{padding:10px 16px;font-size:14px;font-weight:600;color:var(--heading);border-top:1px solid var(--line)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+.callout{background:var(--card);border-left:4px solid var(--blue);border-radius:10px;padding:18px 22px;margin:0 0 24px}
+.callout strong{color:var(--heading)}
+.alt{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+.btn{display:inline-block;background:var(--blue-strong);color:#fff !important;font-weight:700;padding:14px 28px;border-radius:10px;font-size:16px}
+.btn:hover{background:var(--blue-strong-hover);text-decoration:none}
+
+footer{background:#222;padding:48px 0 0;margin-top:0}
+footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:32px;padding-bottom:32px}
+footer h4{color:#fff;font-size:16px;margin-bottom:14px}
+footer p,footer li{font-size:15px;color:#cfcfcf}
+footer ul{list-style:none}
+footer li{margin-bottom:8px;padding-left:18px;position:relative}
+footer li:before{content:"\2022";position:absolute;left:0;color:var(--blue);font-weight:700}
+footer a{color:#cfcfcf}
+footer a:hover{color:#fff;text-decoration:underline}
+.hours{width:100%;border-collapse:collapse;max-width:520px}
+.hours td{padding:8px 12px;border-bottom:1px solid var(--line)}
+.hours td.d{font-weight:700;color:var(--heading)}
+.hours tr:last-child td{border-bottom:none}
+footer .bottom{border-top:1px solid #3a3a3a;background:#1f1f1f;padding:18px 0;font-size:13px;text-align:center;color:#aaa}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <a href="tel:0445523000">044 552 30 00</a><span class="sep">·</span>
+    <a href="mailto:kontakt@v-zo.ch">kontakt@v-zo.ch</a>
+  </div>
+</div>
+
+<header class="main">
+  <div class="container">
+    <nav class="main-nav">
+      <a href="index.html">Start</a>
+      <a href="venensystem.html" class="active">Venensystem</a>
+      <a href="therapien.html">Therapien</a>
+      <a href="venenspezialistin.html">Venenspezialistin</a>
+      <a href="termin.html">Termin</a>
+    </nav>
+  </div>
+</header>
+<div class="brand-row">
+  <div class="container">
+    <a href="index.html"><img src="medien/uploads/2021/03/Logo-VZO-HB-3-min-1-1-1-1-min-min.png.webp" alt="Venenzentrum Zürcher Oberland"></a>
+  </div>
+</div>
+
+<section class="page-head">
+  <div class="container">
+    <h1>Das Venensystem der Beine</h1>
+    <p>Das System der Venen ist ein Netzwerk von Gefässen aus oberflächlichen und tiefen Venen sowie deren Verbindungen (Perforansvenen). Die Venen transportieren täglich etwa <strong>7.000 Liter sauerstoffarmes Blut</strong> – meist entgegen der Schwerkraft – zum Herzen zurück.</p>
+    <p>90&nbsp;% des Blutes wird in den tiefen Venen transportiert, nur 10&nbsp;% in den oberflächlichen Venen. Daher kann man oberflächliche, kranke Venen auch entfernen.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Krampfadern</h2>
+      <p><strong>Krampfadern</strong>, medizinisch <strong>Varizen</strong> genannt, sind krankhaft veränderte Venen dieses Systems. Die wichtigsten oberflächlichen Stammvenen sind:</p>
+    </div>
+    <ul class="bullets">
+      <li><strong>Vena saphena magna</strong> (grosse Rosenvene)</li>
+      <li><strong>Vena saphena parva</strong> (kleine Rosenvene)</li>
+    </ul>
+    <p>… mit ihren jeweiligen Seitenästen.</p>
+    <div class="callout"><strong>Die sichtbaren Krampfadern sind die Seitenäste der erkrankten Stammvenen.</strong></div>
+    <div class="figure-grid">
+      <figure class="figure"><img src="medien/uploads/2021/03/LegAnatomyIllustration-venensystem-min.jpg.webp" alt="Venensystem"><figcaption>Venensystem</figcaption></figure>
+      <figure class="figure"><img src="medien/uploads/2021/03/vene-gesund-krampfader-min.png.webp" alt="Gesunde Vene und Krampfader"><figcaption>Gesunde Vene – Krampfader</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><h2>Ursache von Krampfadern</h2></div>
+    <p>In gesunden Venen ermöglichen sich öffnende und schliessende Klappen den Transport des Blutes gegen die Schwerkraft zurück zum Herzen. Verlieren diese Klappen ihre Schliessfähigkeit, kommt es zum Rückfluss (Reflux). Dadurch weiten sich die Venen, werden länger und verlaufen geschlängelt – das typische Bild der Krampfadern (Varikose).</p>
+    <div class="callout"><strong>Die Entstehung von Krampfadern (Varikosis) ist erblich bedingt.</strong> Ca. 20&nbsp;% der westlichen Bevölkerung leiden unter Venenveränderungen – das Spektrum reicht von Besenreisern bis zum offenen Bein (ulcus cruris).</div>
+    <p>Zusätzliche Faktoren wie Alter, Geschlecht (Frauen sind häufiger betroffen), Schwangerschaften und Übergewicht begünstigen die Ausbildung von Krampfadern oder können das Leiden verschlimmern. Warum manche Menschen Krampfadern entwickeln und andere nicht, ist bis heute ungeklärt.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head"><h2>Krankheitsbilder</h2></div>
+    <p>Mit der Zeit führt der chronische Überdruck zu vermehrtem Austritt von Flüssigkeit, Eiweiss und Blutkörperchen in das umgebende Gewebe. Dies hat Entzündungen, Schwellungen (Ödeme), Verhärtungen (Sklerosen) und bräunliche Verfärbungen (Hyperpigmentationen) der Haut zur Folge – hauptsächlich in der sogenannten Gamaschenzone oberhalb des Sprunggelenks.</p>
+    <p>Entzündungen in diesen kranken Venen führen zu oberflächlichen Beinvenenthrombosen (Varikophlebitis), was in seltenen Fällen eine tiefe Beinvenenthrombose und Lungenembolie zur Folge haben kann. Bei lang andauernden Verläufen können Haut- und Fettgewebe so schlecht durchblutet sein, dass es zu einem offenen Bein (ulcus cruris) kommen kann.</p>
+    <div class="figure-grid">
+      <figure class="figure"><img src="medien/uploads/2021/03/Krampfadern-400h-1-min.jpg.webp" alt="Krampfadern"><figcaption>Krampfadern</figcaption></figure>
+      <figure class="figure"><img src="medien/uploads/2021/03/Ulcus-2-1-min.jpg.webp" alt="Hyperpigmentierung"><figcaption>Hyperpigmentierung</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><h2>Rezidiv-Varizen</h2></div>
+    <p>Rezidivvarizen sind Krampfadern, die nach erfolgter Therapie nach Monaten oder Jahren wieder auftreten. Die Häufigkeit liegt bei etwa 20&nbsp;%. Rezidive können direkt aus der Leiste oder Kniekehle kommen oder nur Seitenäste an Ober- und Unterschenkel betreffen. Ursache ist eine genetische Veranlagung; auch eine nicht sachgerecht durchgeführte Therapie kann der Grund sein.</p>
+    <p>Je nach Befund können diese neu auftretenden Varizen mittels Operation (Rezidivoperation in der Leiste), <a href="therapien.html#PE">Phlebektomie</a> oder Schaumsklerotherapie behandelt werden – auch endovenöse Verfahren wie Lasertherapie oder ClosureFast kommen in Frage.</p>
+    <div class="callout"><strong>Empfehlung:</strong> Alle Krampfaderpatienten sollten periodisch einen Venenspezialisten konsultieren. So lassen sich neue krankhafte Veränderungen früh erkennen und sofort ambulant behandeln.</div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head"><h2 id="Diagnostik">Diagnostik</h2></div>
+    <p>Der Goldstandard der Diagnostik in der Phlebologie ist heute neben der Anamnese und der klinischen Untersuchung die <strong>farbcodierte Duplexsonographie</strong> (Ultraschall). Mit ihr lassen sich die Stadien der venösen Erkrankung genau feststellen und ein Therapieplan festlegen – auch Therapieerfolg und Verlauf können überprüft werden.</p>
+    <div class="two" style="margin-top:22px">
+      <div>
+        <h3 class="block" style="margin-top:0">Therapieplan</h3>
+        <p>Die Diagnostik ist die Grundlage des individuellen Therapieplans, der je nach Patient sehr unterschiedlich sein kann. Einflussfaktoren sind unter anderem die genetische Disposition, das Alter, die Lebensumstände, der allgemeine Gesundheitszustand sowie Ausprägung, Verlauf und Grösse der erkrankten Venen.</p>
+        <div class="callout"><strong>Das Ziel ist eine vollständige Entfernung aller erkrankten Venen, um Rezidive zu verhindern.</strong></div>
+      </div>
+      <img src="medien/uploads/2021/03/Ultraschall-1-min.jpg.webp" alt="Ultraschallgerät">
+    </div>
+    <p style="margin-top:14px"><a class="btn" href="therapien.html">Zu den Therapien</a></p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><h2>Das Lipödem</h2></div>
+    <p>Als <strong>Lipödem</strong> (Lipohyperplasia dolorosa) bezeichnet man eine schmerzhafte Fettgewebsvermehrung unter der Unterhaut, hauptsächlich an den Beinen, selten auch an den Armen. Es tritt vornehmlich bei Frauen auf.</p>
+    <div class="two" style="align-items:start">
+      <div>
+        <h3 class="block">Symptome &amp; Ursache</h3>
+        <p>Charakteristisch: disproportionale Fettgewebsvermehrung an Beinen und/oder Armen (die Füsse sind nicht betroffen), Schweregefühl und Schmerzhaftigkeit, Neigung zu blauen Flecken, Zunahme der Beschwerden im Tagesverlauf. Die Ursache ist bis heute unklar; eine genetische Veranlagung wird vermutet.</p>
+        <h3 class="block">Therapie</h3>
+        <p>Ausschlaggebend ist eine nachhaltige Gewichtsabnahme in Kombination mit einer kohlenhydratarmen, proteinreichen Ernährung sowie Bewegungstherapie (Ausdauertraining).</p>
+        <ul class="bullets">
+          <li>Das Lipödem ist <strong>keine fortschreitende Erkrankung</strong>.</li>
+          <li>Es bleibt stabil, wenn auch das Gewicht stabil bleibt.</li>
+          <li>Es führt nicht zum Lymphödem.</li>
+          <li>Lymphdrainage hat für das Lipödem keinen nachgewiesenen Effekt.</li>
+        </ul>
+      </div>
+      <div>
+        <img src="medien/uploads/2020/12/dem-1.jpg" alt="Lipödem">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head"><h2>Das Lymphödem</h2></div>
+    <p>Beim <strong>Lymphödem</strong> handelt es sich um meist unsymmetrisch auftretende, proteinreiche Wassereinlagerungen im Gewebe – eine <strong>chronische Erkrankung</strong>. Sie tritt auf, wenn die Lymphgefässe geschädigt sind oder der Transport der Lymphflüssigkeit mechanisch behindert wird.</p>
+    <h3 class="block">Zwei Arten des Lymphödems</h3>
+    <ul class="bullets">
+      <li>Das <strong>primäre</strong> Lymphödem mit fehlendem oder vermindertem Lymphabfluss (angeboren).</li>
+      <li>Das <strong>sekundäre</strong> Lymphödem durch mechanische Abflussbehinderung (erworben, z.&nbsp;B. durch Operation, Infektion oder bösartige Erkrankung).</li>
+    </ul>
+    <h3 class="block">Behandlung</h3>
+    <p>Nach genauer Untersuchung und Behandlung der Primärerkrankung ist die <strong>Komplexe Physikalische Entstauung</strong> die wichtigste Massnahme: professionelle manuelle Lymphdrainage, anschliessende Kompression und intensive Hautpflege, ergänzt durch Bewegungstraining. Da es sich um eine chronische Erkrankung handelt, ist die Therapie kontinuierlich erforderlich.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="cols">
+      <div>
+        <h4>Venenzentrum Zürcher Oberland AG</h4>
+        <p>Spezialpraxis für Venenleiden<br>Ärztliche Leitung: Dr. med. Hilde Berwarth</p>
+      </div>
+      <div>
+        <h4>Kontakt &amp; Adresse</h4>
+        <ul>
+          <li>Zentralstrasse 21, 8623 Wetzikon</li>
+          <li>Telefon: <a href="tel:0445523000">044 552 30 00</a></li>
+          <li>Email: <a href="mailto:kontakt@v-zo.ch">kontakt@v-zo.ch</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sprechstunden (2026)</h4>
+        <table class="hours">
+          <tr><td class="d">Mo</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Di</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Mi</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Do</td><td>08:00–17:00</td></tr>
+        </table>
+        <p style="font-size:14px;margin-top:8px">12:00–14:00 Uhr telefonisch nicht erreichbar.</p>
+      </div>
+      <div>
+        <h4>Anfahrt</h4>
+        <ul>
+          <li>4 Parkplätze direkt vor der Praxis</li>
+          <li>Ebenerdig, rollstuhlgerecht</li>
+          <li>ÖV: Bus 850/851 bis Kempten Kreuzackerstrasse</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="container">© Venenzentrum Zürcher Oberland AG · <a href="index.html">Start</a> · <a href="termin.html">Termin buchen</a> · <a href="therapien.html">Therapien</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

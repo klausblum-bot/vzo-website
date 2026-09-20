@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Venenspezialistin Dr. med. Hilde Berwarth | Venenzentrum Zürcher Oberland</title>
+<meta name="description" content="Dr. med. Hilde Berwarth – Fachärztin Chirurgie & Unfallchirurgie, Phlebologin SGP. Über 20 Jahre Erfahrung in der modernen Phlebologie, Ausbildung, Qualifikationen und Team.">
+<style>
+:root{
+  --blue:#2ea3f2;
+  --blue-strong:#337cd6;
+  --blue-strong-hover:#1959ff;
+  --blue-dark:#337cd6;
+  --heading:#313131;
+  --text:#666666;
+  --bg:#ffffff;
+  --line:#e5eef5;
+  --card:#f5fafd;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans','Source Sans Pro',Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--blue-dark);text-decoration:underline}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,h4{color:var(--heading);font-weight:700;line-height:1.25}
+p{margin:0 0 1.1em}
+
+.topbar{background:var(--blue-dark);color:#fff;font-size:12px;font-weight:600}
+.topbar .container{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding-top:.75em;padding-bottom:.75em}
+.topbar a{color:#fff}
+.topbar a:hover{color:#fff;text-decoration:none;opacity:.7}
+.topbar .sep{opacity:.5}
+header.main{position:sticky;top:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.12)}
+header.main .container{display:flex;align-items:center;justify-content:center;padding-top:12px;padding-bottom:12px}
+nav.main-nav{display:flex;flex-wrap:wrap;gap:4px}
+nav.main-nav a{padding:10px 14px;border-radius:8px;font-weight:600;font-size:15px;color:var(--heading)}
+nav.main-nav a:hover{text-decoration:none;color:var(--blue);background:rgba(46,163,242,.08)}
+nav.main-nav a.active{background:var(--blue-strong);color:#fff}
+/* Logo als eigene, volle Breite Zeile UNTER dem Menue (nicht miniaturisiert) */
+.brand-row{background:var(--bg);border-bottom:1px solid var(--line)}
+.brand-row .container{max-width:1200px;text-align:center;padding-top:22px;padding-bottom:22px;padding-left:0;padding-right:0}
+.brand-row img{display:block;width:100%;height:auto;max-width:1200px;margin:0 auto}
+@media(max-width:760px){
+  header.main .container{padding-top:10px;padding-bottom:10px}
+  nav.main-nav{justify-content:center}
+  nav.main-nav a{padding:9px 12px;font-size:14px}
+  .brand-row .container{padding:16px 20px}
+  .brand-row img{max-width:100%}
+  .topbar .container{justify-content:center;text-align:center}
+}
+
+section{padding:56px 0}
+.page-head{background:linear-gradient(135deg,#eef6fd 0%,#ffffff 60%);padding:48px 0}
+.page-head h1{font-size:36px;margin-bottom:12px}
+.page-head p{max-width:780px;font-size:18px}
+@media(max-width:760px){.page-head h1{font-size:26px}}
+h2.block{font-size:28px;margin:36px 0 16px;border-bottom:2px solid var(--blue);padding-bottom:8px}
+h2.first{margin-top:0}
+h4.sub{font-size:19px;margin:22px 0 8px;color:var(--blue-dark)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:center}
+@media(max-width:760px){.two,.three{grid-template-columns:1fr}}
+.callout{background:var(--card);border-left:4px solid var(--blue);border-radius:10px;padding:18px 22px;margin:0 0 20px}
+.callout strong{color:var(--heading)}
+.alt{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+table.cv{width:100%;border-collapse:collapse;margin:0 0 26px;background:#fff}
+table.cv th{text-align:left;background:var(--blue);color:#fff;padding:10px 16px;font-size:15px;text-transform:uppercase;letter-spacing:.04em}
+table.cv td{padding:9px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+table.cv td.y{white-space:nowrap;color:var(--blue-dark);font-weight:700}
+table.cv tr:nth-child(even) td{background:#f9fbfd}
+
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center}
+.card img{width:100%;object-fit:cover;aspect-ratio:1/1;margin-bottom:14px}
+.card h4{margin-bottom:2px}
+.card p.role{color:var(--blue);font-weight:600;margin:0}
+.img-badged{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+.img-badged img{border-radius:0}
+.img-badged .badgeimg{max-width:150px}
+.caption{font-size:13px;color:var(--text);margin-top:6px}
+
+.faq h4{font-size:18px;margin:26px 0 8px;color:var(--blue-dark)}
+.faq p{margin-bottom:10px}
+.btn{display:inline-block;background:var(--blue-strong);color:#fff !important;font-weight:700;padding:14px 28px;border-radius:10px;font-size:16px}
+.btn:hover{background:var(--blue-strong-hover);text-decoration:none}
+
+footer{background:#222;padding:48px 0 0;margin-top:0}
+footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:32px;padding-bottom:32px}
+footer h4{color:#fff;font-size:16px;margin-bottom:14px}
+footer p,footer li{font-size:15px;color:#cfcfcf}
+footer ul{list-style:none}
+footer li{margin-bottom:8px;padding-left:18px;position:relative}
+footer li:before{content:"\2022";position:absolute;left:0;color:var(--blue);font-weight:700}
+footer a{color:#cfcfcf}
+footer a:hover{color:#fff;text-decoration:underline}
+.hours{width:100%;border-collapse:collapse;max-width:520px}
+.hours td{padding:8px 12px;border-bottom:1px solid var(--line)}
+.hours td.d{font-weight:700;color:var(--heading)}
+.hours tr:last-child td{border-bottom:none}
+footer .bottom{border-top:1px solid #3a3a3a;background:#1f1f1f;padding:18px 0;font-size:13px;text-align:center;color:#aaa}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <a href="tel:0445523000">044 552 30 00</a><span class="sep">·</span>
+    <a href="mailto:kontakt@v-zo.ch">kontakt@v-zo.ch</a>
+  </div>
+</div>
+
+<header class="main">
+  <div class="container">
+    <nav class="main-nav">
+      <a href="index.html">Start</a>
+      <a href="venensystem.html">Venensystem</a>
+      <a href="therapien.html">Therapien</a>
+      <a href="venenspezialistin.html" class="active">Venenspezialistin</a>
+      <a href="termin.html">Termin</a>
+    </nav>
+  </div>
+</header>
+<div class="brand-row">
+  <div class="container">
+    <a href="index.html"><img src="medien/uploads/2021/03/Logo-VZO-HB-3-min-1-1-1-1-min-min.png.webp" alt="Venenzentrum Zürcher Oberland"></a>
+  </div>
+</div>
+
+<section class="page-head">
+  <div class="container">
+    <h1>Venenspezialistin Dr. med. Hilde Berwarth</h1>
+    <p>… hat sich auf die Diagnostik und Behandlung von Venenleiden (Krampfadern) spezialisiert. Als Venenärztin im Kanton Zürich ist sie seit mehr als 20 Jahren in der Phlebologie tätig und gilt als Pionierin der modernen, endovenösen Therapien in der Schweiz.</p>
+    <p>Als Chirurgin und Phlebologin mit allen dafür notwendigen Fähigkeitsausweisen bietet sie das gesamte Spektrum der Venen-Therapien aus einer Hand – von der Voruntersuchung mit Ultraschall über die Therapie aller bewährten Verfahren bis zur Nachbetreuung. Das bedeutet einen optimalen Diagnose- und Behandlungsablauf bei höchster Qualität, ohne Informationsunterbrüche und Doppeluntersuchungen.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="block first">Venenzentrum Zürcher Oberland</h2>
+    <p>Seit über 10 Jahren betreibt die Venenärztin ihre eigene Venenpraxis im Kanton Zürich in Wetzikon mit einem eingespielten Team. Die Praxis ist zentral gelegen, der Zugang ist ebenerdig und barrierefrei, mit genügend Parkplätzen direkt vor dem Eingang. Das Venenzentrum ist mit den öffentlichen Verkehrsmitteln gut zu erreichen.</p>
+    <div class="img-badged">
+      <img src="medien/uploads/2021/03/Hilde-300.jpg.webp" alt="Dr. Hilde Berwarth">
+      <div>
+        <img class="badgeimg" src="medien/uploads/2021/03/Faehigkeitsausweis-endo-300.png.webp" alt="Fähigkeitsausweis">
+        <p class="caption">Fähigkeitsausweis endovenöse Ablation</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <h2 class="block first">Ausbildung</h2>
+    <table class="cv">
+      <tbody>
+        <tr><td class="y">1966–1974</td><td>Gymnasium der Heimschule Kloster Wald, Abitur</td></tr>
+        <tr><td class="y">1975</td><td>Gesellenprüfung im Schneiderhandwerk</td></tr>
+        <tr><td class="y">1975–1976</td><td>Studium der kath. Theologie, Biologie und Geographie in Freiburg im Breisgau</td></tr>
+        <tr><td class="y">1976–1982</td><td>Studium der Medizin in Freiburg im Breisgau</td></tr>
+        <tr><td class="y">1982</td><td>Approbation und Promotion</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="block">Berufliche Tätigkeit</h2>
+    <table class="cv">
+      <tbody>
+        <tr><td class="y">1983–1984</td><td>Innere Abteilung des Krankenhauses Pfullendorf (Chefarzt Dr. Vogt)</td></tr>
+        <tr><td class="y">1984–1987</td><td>Facharztausbildung Allgemeinchirurgie, Städtisches Krankenhaus Überlingen</td></tr>
+        <tr><td class="y">1987–1989</td><td>Facharztausbildung Gefässechirurgie &amp; Allgemeinchirurgie, Städtisches Krankenhaus Friedrichshafen</td></tr>
+        <tr><td class="y">1989–1990</td><td>Facharztausbildung, Städtisches Krankenhaus Ravensburg</td></tr>
+        <tr><td class="y">1990</td><td>Facharztprüfung Chirurgie</td></tr>
+        <tr><td class="y">1990–1994</td><td>Wissenschaftliche Assistentin, Universitätsklinik Freiburg, Abt. Unfallchirurgie</td></tr>
+        <tr><td class="y">1994</td><td>Prüfung zum Facharzt Unfallchirurgie</td></tr>
+        <tr><td class="y">1994–1996</td><td>Oberärztin, Universitätsklinik Freiburg, Abt. Unfallchirurgie</td></tr>
+        <tr><td class="y">1999–2008</td><td><strong>Chirurgin/Phlebologin, Berit Klinik in Teufen SG</strong> – Spezialisierung auf endoluminäre Venentherapien (Laser und ClosureFast)</td></tr>
+        <tr><td class="y">2008–2013</td><td>Gemeinschaftspraxis mit Prof. Enzler, Venenzentrum am See, Feldmeilen</td></tr>
+        <tr><td class="y">2013 +</td><td><strong>Gründung der Venenzentrum Zürcher Oberland AG</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="block">Qualifikationen</h2>
+    <table class="cv">
+      <tbody>
+        <tr><td class="y">1982</td><td>Approbation als Ärztin</td></tr>
+        <tr><td class="y">1990</td><td>Facharzt Chirurgie</td></tr>
+        <tr><td class="y">1994</td><td>Facharzt Unfallchirurgie</td></tr>
+        <tr><td class="y">2006</td><td>Fähigkeitsausweis Phlebologie (SGP)</td></tr>
+        <tr><td class="y">2010</td><td>Fähigkeitsausweis Ultraschall (SGUM)</td></tr>
+        <tr><td class="y">2016</td><td>Fähigkeitsausweis endovenöse thermische Ablation von Stammvenen bei Varikose (USGG)</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="block">Mitgliedschaften</h2>
+    <table class="cv">
+      <tbody>
+        <tr><td class="y">SGP</td><td>Schweizerische Gesellschaft Phlebologie</td></tr>
+        <tr><td class="y">FMH</td><td>Verbindung Schweizer Ärzte</td></tr>
+        <tr><td class="y">AGZ</td><td>Ärztegesellschaft des Kantons Zürich</td></tr>
+        <tr><td class="y">SGUM</td><td>Schweizer Gesellschaft für Ultraschall in der Medizin</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="block first">Das Team</h2>
+    <div class="team">
+      <div class="card">
+        <img src="medien/uploads/2025/09/Natalie-Sabater.jpg.webp" alt="Natalie Sabater">
+        <h4>Natalie Sabater</h4>
+        <p class="role">MPA</p>
+      </div>
+      <div class="card">
+        <img src="medien/uploads/2023/03/DSC4423.jpg.webp" alt="Dr. med. Hilde Berwarth">
+        <h4>Dr. med. Hilde Berwarth</h4>
+        <p class="role">Ärztliche Leitung</p>
+      </div>
+      <div class="card">
+        <img src="medien/uploads/2020/12/Venenzentrum-Praxis-13-1024x655.jpg" alt="Carmelina Klopfenstein">
+        <h4>Carmelina Klopfenstein</h4>
+        <p class="role">MPA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <h2 class="block first">Fragen zu Krampfadern und deren Behandlung</h2>
+
+    <div class="faq">
+      <h4>Wann sollte man zum Venenarzt?</h4>
+      <p>Richtig behandelte Krampfadern haben eine Rezidiv-Wahrscheinlichkeit von ca. 5&nbsp;%. Da Krampfadern nicht nur ein ästhetisches Problem sind, sondern zu schweren Veränderungen der Haut und des Unterhautgewebes führen können, sollten sie so früh wie möglich behandelt werden. Einmal aufgetretene Hautveränderungen sind nicht mehr rückgängig zu machen. Auch bei einem tatsächlichen Rezidiv ist eine baldmögliche Behandlung anzustreben – je kleiner der Befund, desto kleiner der Eingriff.</p>
+
+      <h4>Was ist ein Venencheck?</h4>
+      <p>Der Goldstandard der Diagnostik ist neben Anamnese und klinischer Untersuchung die farbcodierte Duplexsonographie (Ultraschall). Beim ersten Termin im Venenzentrum (Venencheck) werden die betroffenen Beine mit Ultraschall untersucht; der Ersttermin dauert 45 Minuten. Dabei werden das oberflächliche und das tiefe Venensystem untersucht und ein Befund dokumentiert. Entscheiden Sie sich für eine Therapie, kann diese in der Regel in ca. 4–6 Wochen nach dem Entscheid durchgeführt werden.</p>
+
+      <h4>Wie lange dauert die Heilung nach einer Venentherapie?</h4>
+      <p>Nach dem Eingriff werden Druckverbände angelegt, die Sie nach 1–2 Tagen entfernen können. Bei ausgeprägten Befunden empfehlen wir Kompressionsstrümpfe für wenige Tage. Blutergüsse werden nach kurzer Zeit resorbiert; die thermisch verödeten Stammvenen werden vom Körper in den folgenden Monaten vollständig abgebaut.</p>
+
+      <h4>Was sind die Folgen nicht oder zu spät behandelter Krampfadern?</h4>
+      <p>Krampfadern sind vor allem ein medizinisches Problem. Nicht behandelt, kann es zu schweren Veränderungen der Haut und des Unterhautgewebes kommen, bis hin zum Ulcus (offenes Bein). Einmal aufgetretene Hautveränderungen sind nicht mehr rückgängig zu machen.</p>
+
+      <h4>Wird die Entfernung von Krampfadern von der gesetzlichen Krankenkasse bezahlt?</h4>
+      <p>Ja – die Entfernung von Krampfadern wird von der gesetzlichen Krankenkasse bezahlt, abzüglich Selbstbehalt und Franchise. Es muss keine Kostengutsprache eingeholt werden. Die Behandlung von Besenreisern gilt dagegen als kosmetische Behandlung und wird <strong>nicht</strong> bezahlt.</p>
+
+      <h4>Was ist der Unterschied zwischen Besenreisern und Krampfadern?</h4>
+      <p>Besenreiser sind Veränderungen in den kleinen Hautgefässen – ein lokales kosmetisches Problem. Krampfadern entstehen in grösseren Venen, weil die Klappen nicht funktionieren. Dies führt zu Stauungen und zu Veränderungen in der Haut und dem Unterhautfettgewebe.</p>
+    </div>
+
+    <p style="margin-top:24px"><a class="btn" href="termin.html">Termin online buchen</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="cols">
+      <div>
+        <h4>Venenzentrum Zürcher Oberland AG</h4>
+        <p>Spezialpraxis für Venenleiden<br>Ärztliche Leitung: Dr. med. Hilde Berwarth</p>
+      </div>
+      <div>
+        <h4>Kontakt &amp; Adresse</h4>
+        <ul>
+          <li>Zentralstrasse 21, 8623 Wetzikon</li>
+          <li>Telefon: <a href="tel:0445523000">044 552 30 00</a></li>
+          <li>Email: <a href="mailto:kontakt@v-zo.ch">kontakt@v-zo.ch</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sprechstunden (2026)</h4>
+        <table class="hours">
+          <tr><td class="d">Mo</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Di</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Mi</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Do</td><td>08:00–17:00</td></tr>
+        </table>
+        <p style="font-size:14px;margin-top:8px">12:00–14:00 Uhr telefonisch nicht erreichbar.</p>
+      </div>
+      <div>
+        <h4>Anfahrt</h4>
+        <ul>
+          <li>4 Parkplätze direkt vor der Praxis</li>
+          <li>Ebenerdig, rollstuhlgerecht</li>
+          <li>ÖV: Bus 850/851 bis Kempten Kreuzackerstrasse</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="container">© Venenzentrum Zürcher Oberland AG · <a href="index.html">Start</a> · <a href="termin.html">Termin buchen</a> · <a href="therapien.html">Therapien</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

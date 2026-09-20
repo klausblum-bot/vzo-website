@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Therapien | Venenzentrum Zürcher Oberland</title>
+<meta name="description" content="Endovenöse Behandlungsverfahren, Phlebektomie, chirurgische Therapie, Schaumsklerotherapie und Besenreiser-Therapie in Wetzikon.">
+<style>
+:root{
+  --blue:#2ea3f2;
+  --blue-strong:#337cd6;
+  --blue-strong-hover:#1959ff;
+  --blue-dark:#337cd6;
+  --heading:#313131;
+  --text:#666666;
+  --bg:#ffffff;
+  --line:#e5eef5;
+  --card:#f5fafd;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans','Source Sans Pro',Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--blue-dark);text-decoration:underline}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,h4{color:var(--heading);font-weight:700;line-height:1.25}
+p{margin:0 0 1.1em}
+
+.topbar{background:var(--blue-dark);color:#fff;font-size:12px;font-weight:600}
+.topbar .container{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding-top:.75em;padding-bottom:.75em}
+.topbar a{color:#fff}
+.topbar a:hover{color:#fff;text-decoration:none;opacity:.7}
+.topbar .sep{opacity:.5}
+header.main{position:sticky;top:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.12)}
+header.main .container{display:flex;align-items:center;justify-content:center;padding-top:12px;padding-bottom:12px}
+nav.main-nav{display:flex;flex-wrap:wrap;gap:4px}
+nav.main-nav a{padding:10px 14px;border-radius:8px;font-weight:600;font-size:15px;color:var(--heading)}
+nav.main-nav a:hover{text-decoration:none;color:var(--blue);background:rgba(46,163,242,.08)}
+nav.main-nav a.active{background:var(--blue-strong);color:#fff}
+/* Logo als eigene, volle Breite Zeile UNTER dem Menue (nicht miniaturisiert) */
+.brand-row{background:var(--bg);border-bottom:1px solid var(--line)}
+.brand-row .container{max-width:1200px;text-align:center;padding-top:22px;padding-bottom:22px;padding-left:0;padding-right:0}
+.brand-row img{display:block;width:100%;height:auto;max-width:1200px;margin:0 auto}
+@media(max-width:760px){
+  header.main .container{padding-top:10px;padding-bottom:10px}
+  nav.main-nav{justify-content:center}
+  nav.main-nav a{padding:9px 12px;font-size:14px}
+  .brand-row .container{padding:16px 20px}
+  .brand-row img{max-width:100%}
+  .topbar .container{justify-content:center;text-align:center}
+}
+
+section{padding:56px 0}
+.page-head{background:linear-gradient(135deg,#eef6fd 0%,#ffffff 60%);padding:48px 0}
+.page-head h1{font-size:38px;margin-bottom:12px}
+.page-head p{max-width:760px;font-size:18px}
+@media(max-width:760px){.page-head h1{font-size:28px}}
+h3.block{font-size:24px;margin:36px 0 14px;border-bottom:2px solid var(--blue);padding-bottom:8px}
+h4.sub{font-size:19px;margin:22px 0 8px;color:var(--blue-dark)}
+ul.bullets{margin:0 0 1.2em 22px}
+ul.bullets li{margin-bottom:8px}
+ol.steps{margin:0 0 1.2em 22px}
+ol.steps li{margin-bottom:8px}
+.callout{background:var(--card);border-left:4px solid var(--blue);border-radius:10px;padding:18px 22px;margin:0 0 24px}
+.callout strong{color:var(--heading)}
+.alt{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.figure-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin:22px 0}
+.figure{background:var(--card);border:1px solid var(--line);border-radius:0;overflow:hidden}
+.figure img{width:100%;object-fit:cover}
+.figure img.fig-svg{width:100%;height:auto;object-fit:contain;display:block}
+.figure figcaption{padding:10px 16px;font-size:14px;font-weight:600;color:var(--heading);border-top:1px solid var(--line)}
+.adv-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
+.adv-card ul{list-style:none}
+.adv-card li{margin-bottom:10px;padding-left:26px;position:relative}
+.adv-card li:before{content:"\2713";position:absolute;left:0;color:var(--blue);font-weight:700}
+.badge{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:18px 22px;margin:0 0 26px}
+.badge strong{color:var(--heading)}
+.btn{display:inline-block;background:var(--blue-strong);color:#fff !important;font-weight:700;padding:14px 28px;border-radius:10px;font-size:16px}
+.btn:hover{background:var(--blue-strong-hover);text-decoration:none}
+
+footer{background:#222;padding:48px 0 0;margin-top:0}
+footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:32px;padding-bottom:32px}
+footer h4{color:#fff;font-size:16px;margin-bottom:14px}
+footer p,footer li{font-size:15px;color:#cfcfcf}
+footer ul{list-style:none}
+footer li{margin-bottom:8px;padding-left:18px;position:relative}
+footer li:before{content:"\2022";position:absolute;left:0;color:var(--blue);font-weight:700}
+footer a{color:#cfcfcf}
+footer a:hover{color:#fff;text-decoration:underline}
+.hours{width:100%;border-collapse:collapse;max-width:520px}
+.hours td{padding:8px 12px;border-bottom:1px solid var(--line)}
+.hours td.d{font-weight:700;color:var(--heading)}
+.hours tr:last-child td{border-bottom:none}
+footer .bottom{border-top:1px solid #3a3a3a;background:#1f1f1f;padding:18px 0;font-size:13px;text-align:center;color:#aaa}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <a href="tel:0445523000">044 552 30 00</a><span class="sep">·</span>
+    <a href="mailto:kontakt@v-zo.ch">kontakt@v-zo.ch</a>
+  </div>
+</div>
+
+<header class="main">
+  <div class="container">
+    <nav class="main-nav">
+      <a href="index.html">Start</a>
+      <a href="venensystem.html">Venensystem</a>
+      <a href="therapien.html" class="active">Therapien</a>
+      <a href="venenspezialistin.html">Venenspezialistin</a>
+      <a href="termin.html">Termin</a>
+    </nav>
+  </div>
+</header>
+<div class="brand-row">
+  <div class="container">
+    <a href="index.html"><img src="medien/uploads/2021/03/Logo-VZO-HB-3-min-1-1-1-1-min-min.png.webp" alt="Venenzentrum Zürcher Oberland"></a>
+  </div>
+</div>
+
+<section class="page-head">
+  <div class="container">
+    <h1>Endovenöse Behandlungsverfahren</h1>
+    <p>Das Prinzip der endovenösen Verfahren: Die erkrankten Stammvenen werden nicht mehr chirurgisch entfernt, sondern thermisch oder chemisch <strong>„ausgeschaltet&quot;</strong>. Die so verödete Vene wird durch körpereigene Prozesse vollständig resorbiert. So bleibt ein Schnitt in der Leiste oder Kniekehle erspart – das führt zu einer schmerzarmen und verkürzten Heilungsphase.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="adv-card">
+      <h3 class="block" style="margin-top:0;border-bottom:none">Vorteile aller endovenösen Therapien</h3>
+      <ul class="bullets">
+        <li>Ambulanter Eingriff in der Praxis, kein Klinikaufenthalt</li>
+        <li>Eingriff in Lokalanästhesie (statt Teil- oder Vollnarkose)</li>
+        <li>Schnelle Rehabilitation</li>
+        <li>Postoperativ geringe Schmerzen</li>
+        <li>Kurze oder keine Arbeitsunfähigkeit</li>
+        <li>Kompressionsstrümpfe nur für wenige Tage</li>
+      </ul>
+      <figure class="figure"><img src="medien/uploads/2020/12/endovenoese-therapie.jpg" alt="Endovenöser Eingriff"><figcaption>Endovenöser Eingriff</figcaption></figure>
+    </div>
+
+    <h3 class="block">Ablauf des Eingriffs in 2 Schritten</h3>
+    <p>Der <strong>endovenöse Eingriff ist der erste Schritt</strong>: Damit wird die erkrankte Stammvene verödet. Die erkrankten Seitenäste – die eigentlichen, sichtbaren Krampfadern – werden in einem <strong>zweiten Schritt</strong> mit der <a href="#PE">Phlebektomie</a> Stück für Stück entfernt.</p>
+    <div class="callout"><strong>Beide Schritte der Krampfadern-Therapie werden im Venenzentrum in der gleichen Sitzung durchgeführt.</strong> Je nach Umfang dauert der gesamte Eingriff zwischen 1 und 2 Stunden. Sind beide Beine betroffen, werden in der Regel beide Beine in der gleichen Sitzung behandelt.</div>
+
+    <div class="badge">
+      <strong>Seit dem 1. Januar 2016 vergütet die obligatorische Krankenversicherung die endovenösen Verfahren</strong> (Radiofrequenz- und Laserverfahren) durch Ärzte mit entsprechendem Fähigkeitsausweis.
+    </div>
+
+    <h3 class="block">ClosureFast Verfahren</h3>
+    <p>Beim <strong>ClosureFast</strong>-Verfahren (ClosureFast™-Technologie) der <strong>Medtronic</strong> wird ein Katheter in die erkrankte Vene eingeführt, an dessen Ende ein 7&nbsp;cm langes Segment gezielt erhitzt wird. Der Katheter wird in Schritten unter Ultraschallkontrolle zurückgezogen. Die Vene verschliesst sich durch die Hitzeeinwirkung und wird vom Körper innerhalb von Wochen bis Monaten vollständig resorbiert.</p>
+
+    <h3 class="block">Laser-Verfahren</h3>
+    <p>Eine Lichtleitfaser wird in die erkrankte Vene eingeführt und bis zur Leiste (Vena saphena magna) oder Kniekehle (Vena saphena parva) vorgeschoben. Die Laserenergie wird über die Lichtleitfaser radial während des kontinuierlichen Rückzugs abgegeben, wodurch sich die Vene schliesst. <a href="https://www.biolitec.de/anwendungen/phlebologie.html" target="_blank" rel="noopener">Biolitec</a> ist einer der führenden Anbieter mit dem <strong>ELVeS Radial Laser</strong>-Verfahren.</p>
+    <figure class="figure"><img src="medien/uploads/2020/12/laser-verfahren.jpg" alt="Lasermethode"><figcaption>Lasermethode</figcaption></figure>
+
+    <h3 class="block">Weitere endovenöse Verfahren</h3>
+    <h4 class="sub">Radiofrequenz-Methode</h4>
+    <p>Bei der endovenösen Radiofrequenztherapie wird an der Spitze eines dünnen Katheters durch Radiowellen Wärme erzeugt, die auf die Veneninnenwand einwirkt und zur Verschliessung der erkrankten Vene führt. Der Arzt führt den Katheter über eine Punktion im Bein ein und schiebt ihn bis in die Leiste oder Kniekehle vor; durch langsames Zurückziehen wird die Venenwand erhitzt und verschlossen. In den folgenden Wochen bis Monaten baut der Körper die Vene ab.</p>
+    <h4 class="sub">VenaSeal Venenkleber</h4>
+    <p>Mit <strong>VenaSeal</strong> der Medtronic Inc. (USA) wird ultraschall-kontrolliert ein Katheter in die Vene eingeführt und die erkrankte Stammvene mit einem speziellen Applikator mit Acrylat-Gewebekleber dauerhaft verklebt. Damit kann nur die Stammvene behandelt werden, nicht die Seitenäste – diese müssen durch Phlebektomie oder Schaumsklerotherapie entfernt werden.</p>
+    <div class="callout"><strong>Der Eingriff mittels VenaSeal wird von den Krankenkassen derzeit nicht bezahlt.</strong></div>
+    <h4 class="sub">Echotherapie</h4>
+    <p>Die Echotherapie kombiniert hochintensiven, fokussierten Ultraschall (HIFU) zur Ablation und herkömmliche Ultraschallbildgebung. Das Verfahren steckt jedoch noch in der Entwicklungsphase, die Dauer der Therapie ist noch zu lang und die Seitenäste können damit nicht entfernt werden. <strong>Wir bieten diese Therapie deshalb derzeit nicht an.</strong> Das Venenzentrum verfolgt ständig die Entwicklung neuer Therapieformen.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <h2 id="PE">Phlebektomie (Häkchenmethode)</h2>
+    <p>Die erkrankten Seitenäste der erkrankten Stammvenen sind die eigentlichen Krampfadern – und häufig der Grund, warum Patienten den Arzt aufsuchen. Sowohl die erkrankten Seitenäste als auch die Rezidivseitenäste werden durch die <strong>Phlebektomie</strong> beseitigt. Man nennt dieses Verfahren auch <strong>Häkchenmethode</strong>.</p>
+    <p><strong>In der Regel erfolgt die Phlebektomie als 2. Schritt nach der endovenösen Therapie, aber in der gleichen Sitzung.</strong></p>
+    <div class="figure-grid">
+      <figure class="figure"><img class="fig-svg" src="medien/uploads/2020/12/hkchenmethode.jpg" alt="Phlebektomie"><figcaption>Phlebektomie (Häkchenmethode)</figcaption></figure>
+    </div>
+    <h4 class="sub">Durchführung</h4>
+    <p>Dieser Eingriff wird ambulant und in Lokalanästhesie durchgeführt, in der Regel direkt im Anschluss an die endovenöse Therapie. Kleine Stichinzisionen von 1–2&nbsp;mm Länge werden über den angezeichneten Venen gesetzt. Mit einem speziellen Häkchen werden die Venen Stück für Stück herausgezogen. Die Länge kann stark variieren – von 10&nbsp;cm bis zu 200&nbsp;cm, falls beide Beine betroffen sind.</p>
+    <div class="callout"><strong>Je sorgfältiger die Seitenäste entfernt werden, desto geringer das Risiko von Rezidiven.</strong></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Chirurgische Therapie</h2>
+    <p>Die bekannteste Therapie ist die chirurgische Entfernung der erkrankten Vene (<strong>Crossektomie und Stripping</strong>). Sie wird aber vermehrt von den endovenösen, ambulanten Therapien abgelöst. Die klassische Krampfadern-OP besteht im Wesentlichen aus 3 Schritten:</p>
+    <ol class="steps">
+      <li>Abtrennung („Absetzen&quot;) der erkrankten Vene an der Einmündung zur grossen Rosenvene (Vena saphena magna) (= Crossektomie)</li>
+      <li>Herausziehen (= Stripping) der erkrankten Vene</li>
+      <li>Entfernung der dazugehörigen Seitenäste (Phlebektomie)</li>
+    </ol>
+    <div class="callout"><strong>Das Venenzentrum führt diese Therapie nicht mehr selbst durch.</strong> Ist sie indiziert, erfolgt sie teilstationär oder stationär in Partnerkliniken.</div>
+    <img src="medien/uploads/2021/03/Grafik-venen.jpg.webp" alt="Crossektomie">
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <h2>Schaumsklerotherapie</h2>
+    <p>Das Prinzip: Ein Verödungsmittel, das mit Luft aufgeschäumt wird, schädigt die Innenwand (Intima) der Venen; diese werden vom Körper im Verlauf von Wochen und Monaten resorbiert. Das Verödungsmittel wird unter Ultraschallkontrolle in die erkrankte Vene gespritzt – der Eingriff ist schmerzlos.</p>
+    <p>Die Therapie eignet sich insbesondere für <strong>Rezidivvarizen</strong>, kann aber auch bei Stammvenen (VSM, VSP) oder Seitenästen in der Ersttherapie angewendet werden.</p>
+    <h4 class="sub">Nachteile können sein</h4>
+    <ul class="bullets">
+      <li>Vorübergehend tastbare, harte, manchmal schmerzhafte Venenstränge</li>
+      <li>Hyperpigmentierungen (Verfärbungen entlang der behandelten Venen), die nach Wochen oder in seltenen Fällen erst nach Monaten verschwinden</li>
+      <li>Häufig sind mehrmalige Injektionen nötig, bis die Vene vollständig verschlossen ist</li>
+    </ul>
+    <figure class="figure"><img src="medien/uploads/2021/03/Schaum-sklero.jpg.webp" alt="Schaumsklerotherapie"><figcaption>Schaum-Sklerotherapie</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Besenreiser Therapie</h2>
+    <p>Unter <strong>Besenreisern</strong> versteht man oberflächlich in der Haut gelegene, kleine Gefässe, die blau oder rötlich sind. Sie können Folge einer Insuffizienz des Venensystems sein – deshalb sollte bei einer ausgeprägten Besenreiservarikosis eine duplexsonographische Untersuchung erfolgen.</p>
+    <div class="callout"><strong>Das Venenzentrum nimmt ab 01.02.2022 keine neuen Besenreiser-Patienten mehr an.</strong> Besenreiser werden nur noch in Zusammenhang mit einer Venentherapie behandelt.</div>
+    <p>Die Kosten einer kosmetischen Entfernung von Besenreisern werden von der obligatorischen Krankenversicherung nicht erstattet.</p>
+    <h4 class="sub">Durchführung</h4>
+    <p>Als wirksamste Methode hat sich die Flüssig-Sklerotherapie mit Alkohol oder Glycerin (Sclérémo) bewährt: Kleinstmengen werden in die Besenreiser gespritzt. Die Behandlung dauert je nach Ausdehnung der Befunde in der Regel zwischen 15 und 30 Minuten; oft sind mehrere Sitzungen nötig.</p>
+    <div class="figure-grid">
+      <figure class="figure"><img src="medien/uploads/2021/03/BR-vorher-400h.jpg.webp" alt="Besenreiser vorher"><figcaption>Vorher</figcaption></figure>
+      <figure class="figure"><img src="medien/uploads/2021/03/BR-nachher-400h.jpg.webp" alt="Besenreiser nachher"><figcaption>Nachher</figcaption></figure>
+    </div>
+    <p style="margin-top:20px"><a class="btn" href="termin.html">Termin online buchen</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="cols">
+      <div>
+        <h4>Venenzentrum Zürcher Oberland AG</h4>
+        <p>Spezialpraxis für Venenleiden<br>Ärztliche Leitung: Dr. med. Hilde Berwarth</p>
+      </div>
+      <div>
+        <h4>Kontakt &amp; Adresse</h4>
+        <ul>
+          <li>Zentralstrasse 21, 8623 Wetzikon</li>
+          <li>Telefon: <a href="tel:0445523000">044 552 30 00</a></li>
+          <li>Email: <a href="mailto:kontakt@v-zo.ch">kontakt@v-zo.ch</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sprechstunden (2026)</h4>
+        <table class="hours">
+          <tr><td class="d">Mo</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Di</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Mi</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Do</td><td>08:00–17:00</td></tr>
+        </table>
+        <p style="font-size:14px;margin-top:8px">12:00–14:00 Uhr telefonisch nicht erreichbar.</p>
+      </div>
+      <div>
+        <h4>Anfahrt</h4>
+        <ul>
+          <li>4 Parkplätze direkt vor der Praxis</li>
+          <li>Ebenerdig, rollstuhlgerecht</li>
+          <li>ÖV: Bus 850/851 bis Kempten Kreuzackerstrasse</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="container">© Venenzentrum Zürcher Oberland AG · <a href="index.html">Start</a> · <a href="termin.html">Termin buchen</a> · <a href="therapien.html">Therapien</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

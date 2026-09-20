@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Termin buchen | Venenzentrum Zürcher Oberland</title>
+<meta name="description" content="Buchen Sie online Ihren Termin im Venenzentrum Zürcher Oberland in Wetzikon. Venencheck, Krampfadern-Behandlung und mehr.">
+<style>
+:root{
+  --blue:#2ea3f2;
+  --blue-strong:#337cd6;
+  --blue-strong-hover:#1959ff;
+  --blue-dark:#337cd6;
+  --heading:#313131;
+  --text:#666666;
+  --bg:#ffffff;
+  --line:#e5eef5;
+  --card:#f5fafd;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans','Source Sans Pro',Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--blue-dark);text-decoration:underline}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,h4{color:var(--heading);font-weight:700;line-height:1.25}
+p{margin:0 0 1.1em}
+
+.topbar{background:var(--blue-dark);color:#fff;font-size:12px;font-weight:600}
+.topbar .container{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding-top:.75em;padding-bottom:.75em}
+.topbar a{color:#fff}
+.topbar a:hover{color:#fff;text-decoration:none;opacity:.7}
+.topbar .sep{opacity:.5}
+header.main{position:sticky;top:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.12)}
+header.main .container{display:flex;align-items:center;justify-content:center;padding-top:12px;padding-bottom:12px}
+nav.main-nav{display:flex;flex-wrap:wrap;gap:4px}
+nav.main-nav a{padding:10px 14px;border-radius:8px;font-weight:600;font-size:15px;color:var(--heading)}
+nav.main-nav a:hover{text-decoration:none;color:var(--blue);background:rgba(46,163,242,.08)}
+nav.main-nav a.active{background:var(--blue-strong);color:#fff}
+/* Logo als eigene, volle Breite Zeile UNTER dem Menue (nicht miniaturisiert) */
+.brand-row{background:var(--bg);border-bottom:1px solid var(--line)}
+.brand-row .container{max-width:1200px;text-align:center;padding-top:22px;padding-bottom:22px;padding-left:0;padding-right:0}
+.brand-row img{display:block;width:100%;height:auto;max-width:1200px;margin:0 auto}
+@media(max-width:760px){
+  header.main .container{padding-top:10px;padding-bottom:10px}
+  nav.main-nav{justify-content:center}
+  nav.main-nav a{padding:9px 12px;font-size:14px}
+  .brand-row .container{padding:16px 20px}
+  .brand-row img{max-width:100%}
+  .topbar .container{justify-content:center;text-align:center}
+}
+
+section{padding:56px 0}
+.page-head{background:linear-gradient(135deg,#eef6fd 0%,#ffffff 60%);padding:48px 0}
+.page-head h1{font-size:38px;margin-bottom:12px}
+.page-head p{max-width:760px;font-size:18px}
+@media(max-width:760px){.page-head h1{font-size:28px}}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+.callout{background:var(--card);border-left:4px solid var(--blue);border-radius:10px;padding:18px 22px;margin:0 0 24px}
+.callout strong{color:var(--heading)}
+.notice{background:#fff8e6;border:1px solid #f0dc9a;border-radius:10px;padding:16px 20px;margin:0 0 26px;font-size:15px}
+.notice strong{color:var(--heading)}
+
+form.appointment{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;box-shadow:0 6px 20px rgba(49,49,49,.06)}
+form.appointment h3{margin-bottom:16px}
+.field{margin-bottom:16px}
+.field label{display:block;font-weight:700;color:var(--heading);font-size:15px;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:16px;color:var(--heading);background:#fff}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue-strong);box-shadow:0 0 0 3px rgba(51,124,214,.18)}
+.field textarea{min-height:90px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:520px){.row{grid-template-columns:1fr}}
+.btn{display:inline-block;background:var(--blue-strong);color:#fff !important;font-weight:700;padding:14px 28px;border-radius:10px;font-size:16px;border:none;cursor:pointer;width:100%}
+.btn:hover{background:var(--blue-strong-hover);text-decoration:none}
+.alt{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hours{width:100%;border-collapse:collapse;max-width:520px}
+.hours td{padding:8px 12px;border-bottom:1px solid var(--line)}
+.hours td.d{font-weight:700;color:var(--heading)}
+.hours tr:last-child td{border-bottom:none}
+.contact-list{list-style:none}
+.contact-list li{margin-bottom:12px;padding-left:26px;position:relative}
+.contact-list li:before{content:"\2713";position:absolute;left:0;color:var(--blue);font-weight:700}
+
+footer{background:#222;padding:48px 0 0;margin-top:0}
+footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:32px;padding-bottom:32px}
+footer h4{color:#fff;font-size:16px;margin-bottom:14px}
+footer p,footer li{font-size:15px;color:#cfcfcf}
+footer ul{list-style:none}
+footer li{margin-bottom:8px;padding-left:18px;position:relative}
+footer li:before{content:"\2022";position:absolute;left:0;color:var(--blue);font-weight:700}
+footer a{color:#cfcfcf}
+footer a:hover{color:#fff;text-decoration:underline}
+footer .bottom{border-top:1px solid #3a3a3a;background:#1f1f1f;padding:18px 0;font-size:13px;text-align:center;color:#aaa}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <a href="tel:0445523000">044 552 30 00</a><span class="sep">·</span>
+    <a href="mailto:kontakt@v-zo.ch">kontakt@v-zo.ch</a>
+  </div>
+</div>
+
+<header class="main">
+  <div class="container">
+    <nav class="main-nav">
+      <a href="index.html">Start</a>
+      <a href="venensystem.html">Venensystem</a>
+      <a href="therapien.html">Therapien</a>
+      <a href="venenspezialistin.html">Venenspezialistin</a>
+      <a href="termin.html" class="active">Termin</a>
+    </nav>
+  </div>
+</header>
+<div class="brand-row">
+  <div class="container">
+    <a href="index.html"><img src="medien/uploads/2021/03/Logo-VZO-HB-3-min-1-1-1-1-min-min.png.webp" alt="Venenzentrum Zürcher Oberland"></a>
+  </div>
+</div>
+
+<section class="page-head">
+  <div class="container">
+    <h1>Termin buchen</h1>
+    <p>Buchen Sie im Folgenden Ihren Termin. Wählen Sie dabei Ihren Wunschtermin und Anlass. Wir bestätigen Ihnen dann sobald wie möglich über SMS, ob der Termin möglich ist und so gebucht wurde.</p>
+    <div class="callout"><strong>Der Termin ist erst dann verbindlich, wenn wir ihn per SMS bestätigt haben.</strong></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="two">
+      <!-- Terminanfrage; ersetzt die bisherige WordPress-Termin-Unterseite (termin-buchen-neu) -->
+      <div>
+        <form class="appointment" action="mailto:kontakt@v-zo.ch" method="post" enctype="text/plain">
+          <h3>Terminanfrage</h3>
+          <div class="row">
+            <div class="field">
+              <label for="anrede">Anrede <span style="color:var(--blue)">*</span></label>
+              <select id="anrede" name="Anrede" required>
+                <option value="">Bitte wählen</option>
+                <option>Frau</option>
+                <option>Herr</option>
+                <option>Divers</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="vorname">Vorname <span style="color:var(--blue)">*</span></label>
+              <input type="text" id="vorname" name="Vorname" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="nachname">Nachname <span style="color:var(--blue)">*</span></label>
+              <input type="text" id="nachname" name="Nachname" required>
+            </div>
+            <div class="field">
+              <label for="telefon">Telefon (für SMS-Bestätigung) <span style="color:var(--blue)">*</span></label>
+              <input type="tel" id="telefon" name="Telefon" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="anlass">Anlass</label>
+              <select id="anlass" name="Anlass">
+                <option>Venencheck (Ersttermin, ca. 45 Min.)</option>
+                <option>Krampfadern-Behandlung</option>
+                <option>Kontrolltermin / Nachkontrolle</option>
+                <option>Konsultation wegen Lipödem</option>
+                <option>Konsultation wegen Lymphödem</option>
+                <option>Fragen / Beratung</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="wunschtermin">Wunschtermin</label>
+              <input type="date" id="wunschtermin" name="Wunschtermin">
+            </div>
+          </div>
+          <div class="field">
+            <label for="nachricht">Bemerkungen</label>
+            <textarea id="nachricht" name="Nachricht" placeholder="z.B. Wunsch Uhrzeit, betroffene Seite, weitere Anliegen…"></textarea>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <button class="btn" type="submit">Terminanfrage absenden</button>
+          </div>
+        </form>
+        <p style="font-size:14px;margin-top:14px;color:#888">
+          Diese Anfrage öffnet Ihre E-Mail an <a href="mailto:kontakt@v-zo.ch">kontakt@v-zo.ch</a>. Der verbindliche Online-Kalender folgt beim Launch (ersetzt die bisherige WordPress-Unterseite).
+        </p>
+      </div>
+
+      <div>
+        <div class="notice">
+          <strong>Hinweis zur Termin-Absage:</strong> Sollten Sie den Termin nicht wahrnehmen können, rufen Sie uns bitte spätestens 24&nbsp;Stunden vorher an oder schreiben Sie uns eine E-Mail an kontakt@v-zo.ch. Ansonsten behalten wir uns vor, Fr. 150,– für das Nicht-Erscheinen zu berechnen.
+        </div>
+        <h3 style="margin-bottom:12px">Direkt Kontakt aufnehmen</h3>
+        <ul class="contact-list">
+          <li><strong>Telefon:</strong> <a href="tel:0445523000">044 552 30 00</a></li>
+          <li><strong>E-Mail:</strong> <a href="mailto:kontakt@v-zo.ch">kontakt@v-zo.ch</a></li>
+          <li><strong>Adresse:</strong> Zentralstrasse 21, 8623 Wetzikon</li>
+        </ul>
+        <h3 style="margin:22px 0 12px">Sprechstunden (2026)</h3>
+        <table class="hours">
+          <tr><td class="d">Mo</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Di</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Mi</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Do</td><td>08:00–17:00</td></tr>
+        </table>
+        <p style="font-size:14px;margin-top:8px">12:00–14:00 Uhr telefonisch nicht erreichbar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <h2>So läuft Ihr erster Termin ab</h2>
+    <p>Beim ersten Termin (Venencheck) untersuchen wir die betroffenen Beine mit Ultraschall – der Ersttermin dauert 45 Minuten. Dabei werden das oberflächliche und das tiefe Venensystem untersucht und ein Befund dokumentiert. Steht eine Behandlung an, besprechen wir mit Ihnen, welche Therapieform in Frage kommt.</p>
+    <p>Entscheiden Sie sich für eine Therapie, kann diese in der Regel in ca. 4–6 Wochen nach dem Entscheid im Venenzentrum durchgeführt werden.</p>
+    <p><a href="venensystem.html">Mehr zum Venencheck &amp; Venensystem</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="cols">
+      <div>
+        <h4>Venenzentrum Zürcher Oberland AG</h4>
+        <p>Spezialpraxis für Venenleiden<br>Ärztliche Leitung: Dr. med. Hilde Berwarth</p>
+      </div>
+      <div>
+        <h4>Kontakt &amp; Adresse</h4>
+        <ul>
+          <li>Zentralstrasse 21, 8623 Wetzikon</li>
+          <li>Telefon: <a href="tel:0445523000">044 552 30 00</a></li>
+          <li>Email: <a href="mailto:kontakt@v-zo.ch">kontakt@v-zo.ch</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sprechstunden (2026)</h4>
+        <table class="hours">
+          <tr><td class="d">Mo</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Di</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Mi</td><td>08:00–17:00</td></tr>
+          <tr><td class="d">Do</td><td>08:00–17:00</td></tr>
+        </table>
+        <p style="font-size:14px;margin-top:8px">12:00–14:00 Uhr telefonisch nicht erreichbar.</p>
+      </div>
+      <div>
+        <h4>Anfahrt</h4>
+        <ul>
+          <li>4 Parkplätze direkt vor der Praxis</li>
+          <li>Ebenerdig, rollstuhlgerecht</li>
+          <li>ÖV: Bus 850/851 bis Kempten Kreuzackerstrasse</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="container">© Venenzentrum Zürcher Oberland AG · <a href="index.html">Start</a> · <a href="termin.html">Termin buchen</a> · <a href="therapien.html">Therapien</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
