@@ -91,7 +91,7 @@ Stand aller 5 Seiten (`index`, `venensystem`, `therapien`, `venenspezialistin`, 
 
 **Weitere feste Elemente:** Google-Maps-iframe (`maps.google.com/?q=Zentralstrasse+21,+8623+Wetzikon`, 250px, lazy); Praxis-Foto NUR im Team-Block; Banner bleibt volle Breite.
 
-**Grundregeln:** die Farb-/Akzent-Behauptungen oben (alte Tabelle zeile `#2ea3f2` als „Buttons/CTA") sind überholt — Buttons/Kopf sind `#337cd6`. Kontaktdaten und Leistungen siehe frühere Abschnitte. Lieferung für Klaus stets als `vzo-website.zip` (entpacken + `index.html` öffnen).
+**Grundregeln:** die Farb-/Akzent-Behauptungen oben (alte Tabelle zeile `#2ea3f2` als „Buttons/CTA") sind überholt — Buttons/Kopf sind `#337cd6`. Kontaktdaten und Leistungen siehe frühere Abschnitte. **Lieferung an Klaus ab 09.2026 NUR über GitHub-Commit/Push** (Repo `klausblum-bot/vzo-website`, Branch main) — KEIN `vzo-website.zip` mehr bauen/ausliefern (Klaus' Vorgabe).
 
 ## Veröffentlichungs-Fahrplan (Go-Live) — Klaus' Plan, abgesegnet
 Klaus' Vorgehen ist grundsätzlich richtig: (1) Seiten hier fertigstellen → (2) Staging-Subdomain `www.neu.v-zo.ch` anlegen → (3) Repo bei GitHub, Commits zur Versionierung/Rollback → (4) sobald fertig, per DNS-Update auf `www.v-zo.ch` schalten und WordPress ablösen. Wichtig ist der **geplante Umstieg**
