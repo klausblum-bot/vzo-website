@@ -18,7 +18,7 @@ Ton: flach, keine Verläufe-Überkultur; klarer Blau/Weiss-Auftritt für medizin
 
 ## Logo & Bildmaterial (echte Assets, im WordPress-Upload verfügbar)
 - Logo: `wp-content/uploads/2021/03/Logo-VZO-HB-3-min-1-1-1-1-min-min.png.webp` (und Logo-VZO-HB-3-min.png.webp)
-- Ärztin-Porträt: `uploads/2021/03/venenspezialistin-dr-berwarth-min.jpg.webp`, `Dr.Hilde-Berwarth-1-min.jpg.webp`, `Hilde-300.jpg.webp`
+- Ärztin-Porträt: `uploads/2021/03/venenspezialistin-dr-berwarth-min.jpg.webp`, `Dr.Hilde-Berwarth-1-min.jpg.webp` (2400×938, Banner „Das Wissen über Krampfadern…“/Person rechts, für venenspezialistin.html), `Hilde-300.jpg.webp`
 - Praxis: `uploads/2020/12/Venenzentrum-Praxis-8-1-1024x429.jpg.webp`, `Venenzentrum-Praxis-13-1024x655-1-300x192.jpg`
 - Team: `uploads/2025/09/Natalie-Sabater.jpg.webp`; Carmelina-Klopfenstein (Venenzentrum-Praxis-13)
 - Absolute Pfade: `https://www.v-zo.ch/wp-content/uploads/…`
@@ -56,7 +56,7 @@ Ton: flach, keine Verläufe-Überkultur; klarer Blau/Weiss-Auftritt für medizin
 
 ## Startseiten-Layout (Original, belegt aus Roh-HTML 19.09.2026)
 Aufbau von oben nach unten (gilt 1:1 für index.html; Header auf allen Seiten identisch):
-1. **Header**: ganz oben schmale Kontakt-Leiste (Telefon 044 552 30 00, E-Mail; = DIVI `top-header`/`et-secondary-menu`), darunter **Logo** (`Logo-VZO-HB-3-min-1-1-1-1-min-min.png.webp`, 1264x187) und Hauptnavigation (Start, Venensystem, Therapien, Venenspezialistin, Termin).
+1. **Header**: ganz oben schmale Kontakt-Leiste (Telefon 044 552 30 00, E-Mail; = DIVI `top-header`/`et-secondary-menu`), darunter **Logo** (`Logo-VZO-HB-3-min-1-1-1-1-min-min.png.webp`, 1264x187) und Hauptnavigation (Start, Venensystem, Therapien, **Dr. Hilde Berwarth**, Termin).
 2. **Direkt unter dem Header**: GROSSES Bannerfoto Dr. Berwarth `uploads/2021/03/venenspezialistin-dr-berwarth-min.jpg.webp` (1200x469px; srcset 980x383/480x188; fetchpriority high; volle Breite, max 1200px), breit unter dem Logo.
 3. **2-Spalten-Sektion**: links (ca. 2/3) H1 „Venenzentrum Zürcher Oberland" + Intro-Absätze zu Dr. Berwarth (belegte Sätze, Links auf /venensystem/ und /therapien/); rechts (ca. 1/3) Telefon gross + `kontakt@v-zo.ch` (mailto) + „Sprechstunden in 2026:"-Tabelle.
 
@@ -74,6 +74,7 @@ Stand aller 5 Seiten (`index`, `venensystem`, `therapien`, `venenspezialistin`, 
 4. **Bannerfoto Dr. Berwarth** (`venenspezialistin-dr-berwarth-min.jpg.webp`, 1200×469, `fetchpriority high`, volle Breite).
 5. Inhalt in `.container{max-width:1200px;margin:0 auto;padding:0 20px}` — **exakt so breit wie das Logo, bündig**.
 6. Footer: dunkel **`#222`** (unten `#1f1f1f`), heller Text, kein hellblauer Rahmen.
+7. **Banner auf allen Unterseiten** (`venensystem`, `therapien`, `venenspezialistin`): je eigenes Original-Bannerfoto vollbreit unter dem Logo (im `.banner`-Block, `.banner img{width:100%;max-width:1200px}`), Eckig. venenspezialistin = `Dr.Hilde-Berwarth-1-min.jpg.webp` („Wissen über Krampfadern“, Karte t_ffd90ace).
 
 **Farben final (CSS-Variablen in jeder Seite):**
 - `--blue` = **`#2ea3f2`** → nur dezente Text-Links.
