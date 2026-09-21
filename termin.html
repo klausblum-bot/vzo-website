@@ -138,63 +138,9 @@ footer .bottom{border-top:1px solid #3a3a3a;background:#1f1f1f;padding:18px 0;fo
 <section>
   <div class="container">
     <div class="two">
-      <!-- Terminanfrage; ersetzt die bisherige WordPress-Termin-Unterseite (termin-buchen-neu) -->
+      <!-- Online-Terminbuchung ueber Praxissoftware; identisch zu www.v-zo.ch/termin-buchen-neu/ -->
       <div>
-        <form class="appointment" action="mailto:kontakt@v-zo.ch" method="post" enctype="text/plain">
-          <h3>Terminanfrage</h3>
-          <div class="row">
-            <div class="field">
-              <label for="anrede">Anrede <span style="color:var(--blue)">*</span></label>
-              <select id="anrede" name="Anrede" required>
-                <option value="">Bitte wählen</option>
-                <option>Frau</option>
-                <option>Herr</option>
-                <option>Divers</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="vorname">Vorname <span style="color:var(--blue)">*</span></label>
-              <input type="text" id="vorname" name="Vorname" required>
-            </div>
-          </div>
-          <div class="row">
-            <div class="field">
-              <label for="nachname">Nachname <span style="color:var(--blue)">*</span></label>
-              <input type="text" id="nachname" name="Nachname" required>
-            </div>
-            <div class="field">
-              <label for="telefon">Telefon (für SMS-Bestätigung) <span style="color:var(--blue)">*</span></label>
-              <input type="tel" id="telefon" name="Telefon" required>
-            </div>
-          </div>
-          <div class="row">
-            <div class="field">
-              <label for="anlass">Anlass</label>
-              <select id="anlass" name="Anlass">
-                <option>Venencheck (Ersttermin, ca. 45 Min.)</option>
-                <option>Krampfadern-Behandlung</option>
-                <option>Kontrolltermin / Nachkontrolle</option>
-                <option>Konsultation wegen Lipödem</option>
-                <option>Konsultation wegen Lymphödem</option>
-                <option>Fragen / Beratung</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="wunschtermin">Wunschtermin</label>
-              <input type="date" id="wunschtermin" name="Wunschtermin">
-            </div>
-          </div>
-          <div class="field">
-            <label for="nachricht">Bemerkungen</label>
-            <textarea id="nachricht" name="Nachricht" placeholder="z.B. Wunsch Uhrzeit, betroffene Seite, weitere Anliegen…"></textarea>
-          </div>
-          <div class="field" style="margin-bottom:0">
-            <button class="btn" type="submit">Terminanfrage absenden</button>
-          </div>
-        </form>
-        <p style="font-size:14px;margin-top:14px;color:#888">
-          Diese Anfrage öffnet Ihre E-Mail an <a href="mailto:kontakt@v-zo.ch">kontakt@v-zo.ch</a>. Der verbindliche Online-Kalender folgt beim Launch (ersetzt die bisherige WordPress-Unterseite).
-        </p>
+        <iframe loading="lazy" src="https://online-termine.app/v4/vzzo" width="100%" height="500"></iframe>
       </div>
 
       <div>
