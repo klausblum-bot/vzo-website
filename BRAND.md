@@ -31,7 +31,7 @@ Ton: flach, keine Verläufe-Überkultur; klarer Blau/Weiss-Auftritt für medizin
 - Sprechstunden (2026): **Mo–Do 08:00–17:00 Uhr**; 12:00–14:00 Uhr telefonisch nicht erreichbar
 - ÖV: ab HB Wetzikon, Bus 850/851 bis **Kempten Kreuzackerstrasse** (zvv.ch)
 - 4 Parkplätze vor der Praxis; ebenerdig, **rollstuhlgerecht**
-- Termin: **online buchbar** (im WordPress Link `…/termin-buchen-neu/`; ersatzweise eigene Anfrage/Sprungmarke)
+- Termin: **online buchbar (Stand 09.2026: termin.html bindet das ECHTE Praxissoftware-Plugin ein, identisch zu www.v-zo.ch/termin-buchen-neu/ — immer <iframe loading="lazy" src="https://online-termine.app/v4/vzzo" width="100%" height="500">, KEINE Mailto-Form mehr bauen)**
 
 ## Leistungen (Behandlungsspektrum — Fakten aus /therapien/ + /venensystem/)
 - **Diagnostik „Venencheck"**: farbcodierte Duplexsonographie (Ultraschall), Ersttermin ~45 min
