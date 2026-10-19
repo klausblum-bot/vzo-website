@@ -1,4 +1,4 @@
-"""Read-only: UpdraftPlus-Protokolle + Uploads-Bestand (kein Schreibzugriff)."""
+"""Read-only: Suche nach Rettungsquelle (aeltere UpdraftPlus-Backups, uploads-old, debug.log)."""
 import os, stat, datetime, paramiko
 
 HOST = os.environ["FTP_HOST"]; USER = os.environ["FTP_USER"]; PW = os.environ["FTP_PASSWORD"]
@@ -10,7 +10,7 @@ def ts(m):
     return datetime.datetime.utcfromtimestamp(m).strftime('%Y-%m-%d %H:%M:%S')
 
 
-def show(p, limit=100):
+def show(p, limit=200):
     print("--- ls %s" % p)
     try:
         for e in sorted(s.listdir_attr(p), key=lambda a: a.filename)[:limit]:
@@ -20,52 +20,83 @@ def show(p, limit=100):
         print("  FEHLER: %s" % ex)
 
 
-for p in ["/public_html/wp-content/uploads",
-          "/public_html/wp-content/uploads/2021",
-          "/public_html/wp-content/uploads/2021/03",
-          "/public_html/wp-content/uploads/backup",
-          "/public_html/wp-content/updraft/uploads-old",
-          "/public_html/wp-content/updraft/uploads-old/2021",
-          "/public_html/wp-content/updraft/uploads-old/2021/03",
-          "/public_html/wp-content/updraft/plugins-old"]:
-    show(p)
+def walk_files(base, cap=6000):
+    """Rekursiv Dateien sammeln (paramiko hat kein zuverlaessiges walk)."""
+    out = []
+    stack = [base]
+    n = 0
+    while stack and n < cap:
+        cur = stack.pop()
+        try:
+            entries = s.listdir_attr(cur)
+        except Exception:
+            continue
+        for e in entries:
+            n += 1
+            if stat.S_ISDIR(e.st_mode):
+                stack.append(cur + "/" + e.filename)
+            else:
+                out.append((cur + "/" + e.filename, e.st_size, e.st_mtime))
+    return out, n
 
-print("--- UpdraftPlus-Protokolle (Kopf und Ende)")
-for name in ["log.c90c5d85be6d.txt", "log.b5fec7e454ae.txt", "log.b5fec7e454ae-browser.txt"]:
-    p = "/public_html/wp-content/updraft/" + name
-    print("========== %s" % name)
+
+print("========== 1) Alle Backups im updraft-Ordner")
+show("/public_html/wp-content/updraft")
+
+print("========== 2) Dateizahl je Jahresordner im AKTUELLEN uploads")
+for y in ["2020", "2021", "2022", "2023", "2024", "2025", "2026"]:
+    p = "/public_html/wp-content/uploads/" + y
     try:
-        with s.open(p, 'r') as f:
-            data = f.read().decode('utf-8', 'replace').splitlines()
-        print("  Zeilen: %d" % len(data))
-        print("  --- erste 45 ---")
-        for l in data[:45]:
-            print("   ", l[:200])
-        print("  --- letzte 45 ---")
-        for l in data[-45:]:
-            print("   ", l[:200])
+        entries = s.listdir_attr(p)
     except Exception as ex:
-        print("  FEHLER: %s" % ex)
+        print("  %s: FEHLER %s" % (y, ex)); continue
+    for e in sorted(entries, key=lambda a: a.filename):
+        if stat.S_ISDIR(e.st_mode):
+            files, _ = walk_files(p + "/" + e.filename)
+            print("  %s/%s: %d Dateien" % (y, e.filename, len(files)))
+        else:
+            print("  %s/%s: Datei" % (y, e.filename))
 
-print("--- Existenz-Checks (Logo/Arztfoto, alle Kandidatenpfade)")
-cands = []
-for base in ["/public_html/wp-content/uploads/2021/03",
-             "/public_html/wp-content/updraft/uploads-old/2021/03",
-             "/public_html/wp-content/uploads/backup/2021/03"]:
-    for f in ["Logo-VZO-HB-3-min-1-1-1-1-min-min.png",
-              "Logo-VZO-HB-3-min-1-1-1-1-min-min.png.webp",
-              "venenspezialistin-dr-berwarth-min.jpg",
-              "venenspezialistin-dr-berwarth-min.jpg.webp"]:
-        cands.append(base + "/" + f)
-for p in cands:
+print("========== 3) uploads-old: Dateizahl je Jahresordner + Logo-/Berwarth-Treffer")
+hits = []
+for y in ["2020", "2021", "2022", "2023", "2024", "2025", "2026", "backup", "et_temp", "rank-math", "wpcode", "wp-file-manager-pro"]:
+    p = "/public_html/wp-content/uploads-old/" + y
     try:
-        a = s.stat(p)
-        print("  JA   %10d %s  %s" % (a.st_size, ts(a.st_mtime), p))
-    except Exception:
-        print("  NEIN %s" % p)
+        entries = s.listdir_attr(p)
+    except Exception as ex:
+        print("  %s: FEHLER %s" % (y, ex)); continue
+    for e in sorted(entries, key=lambda a: a.filename):
+        if stat.S_ISDIR(e.st_mode):
+            files, _ = walk_files(p + "/" + e.filename)
+            print("  %s/%s: %d Dateien" % (y, e.filename, len(files)))
+            for f, sz, m in files:
+                low = f.lower()
+                if "logo" in low or "berwarth" in low:
+                    hits.append((f, sz, m))
+        else:
+            print("  %s/%s: Datei" % (y, e.filename))
+print("  --- Logo-/Berwarth-Treffer in uploads-old:")
+for f, sz, m in hits:
+    print("    %10d %s  %s" % (sz, ts(m), f))
+if not hits:
+    print("    (keine)")
 
-print("--- Verzeichnis-Zeitstempel von wp-content (Geschwister von updraft)")
-show("/public_html/wp-content")
+print("========== 4) uploads/backup (falls vorhanden)")
+show("/public_html/wp-content/uploads/backup")
+show("/public_html/wp-content/uploads-old/backup")
+
+print("========== 5) debug.log (aktuell, %d Bytes)" % 0)
+try:
+    a = s.stat("/public_html/wp-content/debug.log")
+    print("  Groesse: %d Bytes, mtime %s" % (a.st_size, ts(a.st_mtime)))
+    with s.open("/public_html/wp-content/debug.log", 'r') as f:
+        data = f.read().decode('utf-8', 'replace')
+    print("  --- Anfang ---")
+    print("\n".join(data.splitlines()[:60]))
+    print("  --- Ende ---")
+    print("\n".join(data.splitlines()[-40:]))
+except Exception as ex:
+    print("  FEHLER: %s" % ex)
 
 s.close(); t.close()
 print("FERTIG")
