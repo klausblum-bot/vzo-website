@@ -32,7 +32,7 @@ print("Dateien auf dem Server unter uploads: %d" % len(server))
 backup = [n for n in zf.namelist() if not n.endswith('/')]
 print("Dateien im Juni-Backup unter uploads: %d" % len(backup))
 
-missing = [n for n in backup if (ROOT + "/" + n) not in server]
+missing = [n for n in backup if ("/public_html/wp-content/" + n) not in server]
 print("========== FEHLT GEGENUEBER JUNI: %d Dateien" % len(missing))
 per_dir = collections.Counter('/'.join(n.split('/')[:3]) for n in missing)
 for k in sorted(per_dir):
