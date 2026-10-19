@@ -11,34 +11,14 @@ jobs:
   diag:
     runs-on: ubuntu-latest
     steps:
-      - name: SFTP-Client (lftp) installieren
-        run: sudo apt-get update && sudo apt-get install -y lftp >/dev/null
+      - uses: actions/checkout@v4
 
-      - name: Verzeichnisse auflisten
+      - name: paramiko installieren
+        run: pip install paramiko >/dev/null
+
+      - name: Diagnose (read-only)
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        run: |
-          set -u
-          for p in / /public_html /public_html/wp-content /public_html/wp-content/plugins /public_html/wp-content/themes /public_html/wp-content/mu-plugins; do
-            echo "===== ls -lat $p ====="
-            lftp -c "set sftp:auto-confirm yes; set net:timeout 60; open sftp://$FTP_HOST --user '$FTP_USER' --password '$FTP_PASSWORD'; ls -lat $p; bye" 2>&1 | head -70
-            echo
-          done
-
-      - name: Logs und Version holen
-        env:
-          FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_USER: ${{ secrets.FTP_USER }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        run: |
-          set -u
-          mkdir -p /tmp/diag
-          for f in wp-includes/version.php error_log wp-content/debug.log wp-admin/error_log wp-content/plugins/error_log .maintenance wp-config.php; do
-            echo "===== /public_html/$f ====="
-            lftp -c "set sftp:auto-confirm yes; set net:timeout 60; open sftp://$FTP_HOST --user '$FTP_USER' --password '$FTP_PASSWORD'; get /public_html/$f -o /tmp/diag/$(basename $f); bye" 2>&1 | tail -3
-            t="/tmp/diag/$(basename $f)"
-            if [ -f "$t" ]; then ls -la "$t"; tail -c 6000 "$t"; echo; else echo "(nicht vorhanden / nicht lesbar)"; fi
-            echo
-          done
+        run: python3 .github/diag.py
