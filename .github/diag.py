@@ -1,72 +1,77 @@
 #!/usr/bin/env python3
-"""TEMPORAER: read-only Diagnose des WP-500-Fehlers auf dem v-zo.ch-Host."""
-import os, stat, datetime
+"""TEMPORAER: read-only Forensik-Sichtung des v-zo.ch-Hosts (kein Schreiben)."""
+import os, stat, time, datetime
 import paramiko
 
-host = os.environ['FTP_HOST']
-user = os.environ['FTP_USER']
-pw = os.environ['FTP_PASSWORD']
-
-t = paramiko.Transport((host, 22))
-t.connect(username=user, password=pw)
+host = os.environ['FTP_HOST']; user = os.environ['FTP_USER']; pw = os.environ['FTP_PASSWORD']
+t = paramiko.Transport((host, 22)); t.connect(username=user, password=pw)
 sftp = paramiko.SFTPClient.from_transport(t)
 
+def ts(m): return datetime.datetime.utcfromtimestamp(m).strftime('%Y-%m-%d %H:%M:%S')
 
-def ls(path, limit=60):
+def show(path, nbytes=8000):
+    print(f"===== {path} =====", flush=True)
+    try:
+        f = sftp.open(path, 'rb'); d = f.read(nbytes)
+        print(d.decode('utf-8', 'replace'))
+        print(f"[{len(d)} bytes gelesen]")
+    except Exception as e:
+        print("ERR", repr(e))
+    print(flush=True)
+
+def ls(path, limit=80):
     print(f"===== ls {path} =====", flush=True)
     try:
-        items = sorted(sftp.listdir_attr(path), key=lambda a: a.st_mtime, reverse=True)
-        for a in items[:limit]:
-            ts = datetime.datetime.utcfromtimestamp(a.st_mtime).strftime('%Y-%m-%d %H:%M:%S')
-            print(f"{stat.filemode(a.st_mode)} {a.st_size:>13} {ts} {a.filename}")
+        for a in sorted(sftp.listdir_attr(path), key=lambda x: x.st_mtime, reverse=True)[:limit]:
+            print(f"{stat.filemode(a.st_mode)} {a.st_size:>12} {ts(a.st_mtime)} {a.filename}")
     except Exception as e:
         print("ERR", repr(e))
     print(flush=True)
 
+def walk(root, cutoff, skip=(), max_dirs=4000):
+    """Rekursiv per listdir_attr (1 Roundtrip pro Verzeichnis)."""
+    found, stack, ndirs, nfiles = [], [root], 0, 0
+    while stack and ndirs < max_dirs:
+        d = stack.pop(); ndirs += 1
+        try: entries = sftp.listdir_attr(d)
+        except Exception: continue
+        for a in entries:
+            p = d + '/' + a.filename
+            if stat.S_ISDIR(a.st_mode):
+                if a.filename in skip: continue
+                stack.append(p)
+            else:
+                nfiles += 1
+                if a.st_mtime >= cutoff:
+                    found.append((a.st_mtime, a.st_size, p))
+    print(f"[{root}: {ndirs} Ordner, {nfiles} Dateien geprueft]", flush=True)
+    return found
 
-def head(path, nbytes=1500):
-    print(f"===== head {path} =====", flush=True)
-    try:
-        f = sftp.open(path, 'rb')
-        print(f.read(nbytes).decode('utf-8', 'replace'))
-    except Exception as e:
-        print("ERR", repr(e))
-    print(flush=True)
+# --- 1. Der Backdoor-Plugin-Code komplett ---
+show('/public_html/wp-content/plugins/link-case/link-case.php')
+show('/public_html/wp-content/plugins/link-case/uninstall.php')
+ls('/public_html/wp-content/plugins/link-case/assets')
+ls('/public_html/wp-content/plugins/link-case/languages')
 
+# --- 2. Weitere Verdachtsdateien im Webroot ---
+show('/public_html/testp.php')
+ls('/public_html/zeit')
+ls('/public_html/history')
 
-def tail(path, nbytes=150000, nlines=120):
-    print(f"===== tail {path} =====", flush=True)
-    try:
-        st = sftp.stat(path)
-        print(f"size={st.st_size} mtime={datetime.datetime.utcfromtimestamp(st.st_mtime)}")
-        f = sftp.open(path, 'rb')
-        f.seek(max(0, st.st_size - nbytes))
-        data = f.read().decode('utf-8', 'replace')
-        for ln in data.splitlines()[-nlines:]:
-            print(ln[:600])
-    except Exception as e:
-        print("ERR", repr(e))
-    print(flush=True)
+# --- 3. Zuletzt geaenderte PHP-Dateien im ganzen Webroot ---
+cutoff = time.mktime(time.strptime('2026-10-01', '%Y-%m-%d'))
+skip = {'.git', '.tmp', 'cache', 'et-cache', 'updraft', 'upgrade', 'upgrade-temp-backup', 'node_modules'}
+hits = []
+for root in ['/public_html', '/public_html/wp-content/uploads', '/public_html/wp-content/mu-plugins',
+             '/public_html/wp-content/plugins', '/public_html/wp-content/themes']:
+    hits += walk(root, cutoff, skip=skip)
+hits.sort(reverse=True)
+print("===== Dateien geaendert seit 2026-10-01 =====", flush=True)
+for m, s, p in hits:
+    if p.endswith(('.php', '.phtml', '.php5', '.php7', '.shtml', '.htaccess', '.js')) or 'link' in p.lower():
+        print(f"{ts(m)} {s:>10} {p}")
 
-
-def exists(path):
-    try:
-        sftp.stat(path)
-        return True
-    except Exception:
-        return False
-
-
-print("=== Existenz-Checks ===")
-for p in ['/public_html/.maintenance', '/public_html/wp-content/.maintenance',
-          '/public_html/wp-content/plugins/link-case', '/public_html/testp.php']:
-    print(f"{p}: {'JA' if exists(p) else 'nein'}")
-print(flush=True)
-
-ls('/public_html/wp-content/upgrade')
-ls('/public_html/wp-content/upgrade-temp-backup')
-ls('/public_html/wp-content/plugins/link-case')
-head('/public_html/wp-content/plugins/link-case/link-case.php')
-tail('/public_html/wp-content/debug.log')
+# --- 4. .htaccess (auf eingeschleuste Redirects pruefen) ---
+show('/public_html/.htaccess', 7000)
 
 t.close()
