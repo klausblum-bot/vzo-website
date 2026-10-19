@@ -1,0 +1,33 @@
+name: DIAG Uploads (read-only)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repo-Inhalt abrufen
+        uses: actions/checkout@v4
+
+      - name: paramiko installieren
+        run: pip install paramiko >/dev/null
+
+      - name: Bestandsaufnahme uploads
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: python3 .github/diag_uploads.py
+
+      - name: HTTP-Antwort der fehlenden Bilder
+        run: |
+          for u in \
+            "https://www.v-zo.ch/wp-content/uploads/2021/03/Logo-VZO-HB-3-min-1-1-1-1-min-min.png" \
+            "https://www.v-zo.ch/wp-content/uploads/2021/03/venenspezialistin-dr-berwarth-min.jpg" ; do
+            echo "=== $u"
+            curl -sSI --max-time 30 "$u" | head -12
+            echo "--- Body:"
+            curl -sS --max-time 30 "$u" | head -c 300
+            echo
+          done
