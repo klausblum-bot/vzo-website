@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""TEMPORAER: read-only Abschlusskontrolle v9."""
+"""TEMPORAER: read-only - wo liegt das laufende Zugriffslog?"""
 import os, stat, datetime
 import paramiko
 
@@ -8,42 +8,29 @@ t = paramiko.Transport((host, 22)); t.connect(username=user, password=pw)
 sftp = paramiko.SFTPClient.from_transport(t)
 def ts(m): return datetime.datetime.utcfromtimestamp(m).strftime('%Y-%m-%d %H:%M:%S')
 
-print("=== debug.log jetzt ===", flush=True)
-try:
-    st = sftp.stat('/public_html/wp-content/debug.log')
-    print(f"wieder da: {st.st_size} Bytes, mtime {ts(st.st_mtime)}", flush=True)
-except Exception as e:
-    print("noch nicht wieder da ✓", flush=True)
+for d in ['www_logs', 'logs', 'access-logs', 'history']:
+    print(f"=== ls {d} ===", flush=True)
+    try:
+        for a in sorted(sftp.listdir_attr(d), key=lambda x: x.st_mtime, reverse=True)[:15]:
+            print(f"    {stat.filemode(a.st_mode)} {a.st_size:>13} {ts(a.st_mtime)} {a.filename}", flush=True)
+    except Exception as e:
+        print("    ERR", repr(e), flush=True)
 
-print("=== Dateien in www_logs/v-zo.ch mit Datum >= 2026-10-15 ===", flush=True)
+print("=== Kandidaten fuer laufendes Log ===", flush=True)
+for p in ['www_logs/v-zo.ch/access.log', 'www_logs/v-zo.ch/error.log',
+          'www_logs/access.log', 'www_logs/v-zo.ch/access.log.20261019',
+          'www_logs/v-zo.ch/v-zo.ch.access.log']:
+    try:
+        st = sftp.stat(p); print(f"  OK  {p}  {st.st_size} B  {ts(st.st_mtime)}", flush=True)
+    except Exception as e:
+        print(f"  --  {p}  ({type(e).__name__})", flush=True)
+
+print("=== neueste .gz im v-zo.ch-Logordner (2026101*) ===", flush=True)
 try:
     for a in sorted(sftp.listdir_attr('www_logs/v-zo.ch'), key=lambda x: x.filename):
-        if a.filename.endswith('.gz'):
-            if a.filename >= 'access.log.20261015':
-                print(f"    {a.st_size:>12} {ts(a.st_mtime)} {a.filename}", flush=True)
-        else:
-            print(f"    {a.st_size:>12} {ts(a.st_mtime)} {a.filename}   <-- KEIN .gz", flush=True)
+        if a.filename.startswith('access.log.2026101'):
+            print(f"    {a.st_size:>12} {ts(a.st_mtime)} {a.filename}", flush=True)
 except Exception as e:
     print("ERR", repr(e), flush=True)
-
-def tail(path, n=1500000):
-    st = sftp.stat(path)
-    f = sftp.open(path, 'rb'); f.seek(max(0, st.st_size - n))
-    return st, f.read().decode('utf-8', 'replace').splitlines()
-
-for p in ['www_logs/v-zo.ch/access.log']:
-    print(f"=== {p} ===", flush=True)
-    try:
-        st, lines = tail(p)
-        print(f"size={st.st_size} mtime={ts(st.st_mtime)} Zeilen={len(lines)}", flush=True)
-        print("erste:", lines[0][:150] if lines else '-', flush=True)
-        print("letzte:", lines[-1][:150] if lines else '-', flush=True)
-        for pat in ['link-case', '_d5a55e', 'data-ops84', 'POST /wp-login', 'POST /wp-admin', 'xmlrpc']:
-            h = [l for l in lines if pat in l]
-            print(f"--- '{pat}': {len(h)}", flush=True)
-            for l in h[:10]:
-                print("   ", l[:250], flush=True)
-    except Exception as e:
-        print("ERR", repr(e), flush=True)
 
 t.close()
