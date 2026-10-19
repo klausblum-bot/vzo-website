@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""TEMPORAER: read-only Runde v5 - Zeitpunkt + weitere Persistenz."""
-import os, stat, datetime
+"""TEMPORAER: read-only Runde v6 - Zugriffslogs (wurde die Hintertuer benutzt?)."""
+import os, stat, datetime, re
 import paramiko
 
 host = os.environ['FTP_HOST']; user = os.environ['FTP_USER']; pw = os.environ['FTP_PASSWORD']
@@ -9,34 +9,47 @@ sftp = paramiko.SFTPClient.from_transport(t)
 
 def ts(m): return datetime.datetime.utcfromtimestamp(m).strftime('%Y-%m-%d %H:%M:%S')
 
-def ls(path, limit=60):
-    print(f"===== ls {path} =====", flush=True)
+print("===== ls www_logs =====", flush=True)
+try:
+    for a in sorted(sftp.listdir_attr('www_logs'), key=lambda x: x.st_mtime, reverse=True)[:40]:
+        print(f"{stat.filemode(a.st_mode)} {a.st_size:>13} {ts(a.st_mtime)} {a.filename}", flush=True)
+except Exception as e:
+    print("ERR", repr(e), flush=True)
+
+print("===== ls .tmp =====", flush=True)
+try:
+    for a in sorted(sftp.listdir_attr('.tmp'), key=lambda x: x.st_mtime, reverse=True)[:20]:
+        print(f"{stat.filemode(a.st_mode)} {a.st_size:>13} {ts(a.st_mtime)} {a.filename}", flush=True)
+except Exception as e:
+    print("ERR", repr(e), flush=True)
+
+def scan(path, patterns, nbytes=600000):
+    print(f"===== scan {path} (letzte {nbytes} Bytes) =====", flush=True)
     try:
-        for a in sorted(sftp.listdir_attr(path), key=lambda x: x.st_mtime, reverse=True)[:limit]:
-            print(f"{stat.filemode(a.st_mode)} {a.st_size:>13} {ts(a.st_mtime)} {a.filename}", flush=True)
+        st = sftp.stat(path)
+        print(f"size={st.st_size} mtime={ts(st.st_mtime)}", flush=True)
+        f = sftp.open(path, 'rb'); f.seek(max(0, st.st_size - nbytes))
+        lines = f.read().decode('utf-8', 'replace').splitlines()
+        print(f"[{len(lines)} Zeilen gelesen]", flush=True)
+        for pat in patterns:
+            hits = [l for l in lines if pat in l]
+            print(f"--- Treffer fuer '{pat}': {len(hits)}", flush=True)
+            for l in hits[:15]:
+                print("   ", l[:300], flush=True)
+        # erste 500er-Zeile und Zeitraum
+        e500 = [l for l in lines if ' 500 ' in l]
+        if e500:
+            print(f"--- 500er: {len(e500)}, erster: {e500[0][:200]}", flush=True)
+            print(f"--- letzter: {e500[-1][:200]}", flush=True)
+        if lines:
+            print(f"--- Zeitraum: {lines[0][:80]} ... {lines[-1][:80]}", flush=True)
     except Exception as e:
         print("ERR", repr(e), flush=True)
 
-def head(path, n=4000):
-    print(f"===== head {path} =====", flush=True)
+for name in ['vzo-access.log', 'access.log', 'vzo-error.log', 'error.log']:
     try:
-        print(sftp.open(path, 'rb').read(n).decode('utf-8', 'replace'), flush=True)
-    except Exception as e:
-        print("ERR", repr(e), flush=True)
-
-# Wann fingen die Fatal Errors an?
-head('/public_html/wp-content/debug.log', 2500)
-
-# Klassische Persistenz-Ablagen
-ls('/public_html/wp-content')
-ls('/public_html')
-ls('/public_html/wp-includes')
-
-# Home-Verzeichnis: Logs?
-ls('.', 40)
-for p in ['logs', 'www_logs', 'error_log', 'access_log']:
-    try:
-        sftp.stat(p); print(f"{p}: JA", flush=True)
+        sftp.stat('www_logs/' + name)
+        scan('www_logs/' + name, ['_d5a55e', 'data-ops84', 'link-case', 'gvTOhiF2XT'])
     except Exception:
         pass
 
